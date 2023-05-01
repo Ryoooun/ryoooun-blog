@@ -1,0 +1,57 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE } from "../../config";
+
+import FormattedDate from "../../components/FormattedDate.astro";
+
+import { getBlogs } from "../../library/microcms";
+const { contents: posts } = await getBlogs({
+  fields: ["id", "title", "publishedAt"],
+});
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE.title} description={SITE.desc} />
+    <style>
+      ul {
+        list-style-type: none;
+        padding: unset;
+      }
+      ul li {
+        display: flex;
+      }
+      ul li :global(time) {
+        flex: 0 0 130px;
+        font-style: italic;
+        color: #595959;
+      }
+      ul li a:visited {
+        color: #8e32dc;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section>
+        <ul>
+          {
+            posts.map((post) => (
+              <li>
+                <time datetime={post.publishedAt}>
+                  {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
+                </time>
+                <a href={`/blog/${post.id}`}>{post.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>

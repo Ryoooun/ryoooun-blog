@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "astro": "^2.3.2",
-    "microcms-js-sdk": "^2.3.3"
+    "microcms-js-sdk": "^2.3.3",
+    "sass": "^1.62.1"
   }
 }
