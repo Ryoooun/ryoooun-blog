@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { getBlogs } from "../../library/microcms";
+import { SITE } from "../../config";
+export async function getStaticPaths() {
+  const { contents: posts } = await getBlogs({
+    fields: ["id", "title", "category"],
+  });
+  const uniqueTags = [...new Set(posts.map((post) => post.category.id).flat())];
+  return uniqueTags.map((tag) => {
+    const filteredPosts = posts.filter((post) =>
+      post.category.id.includes(tag)
+    );
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+---
+
+<BaseLayout title={SITE.title} description={SITE.desc}>
+  <h2>"{posts[0].category.name}"の記事一覧</h2>
+  <ul>
+    {
+      posts.map((post: any) => (
+        <li>
+          <a href={`/blog/${post.id}`}>{post.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

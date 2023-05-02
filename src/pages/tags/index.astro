@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+import { getBlogs } from "../../library/microcms";
+import { SITE } from "../../config";
+const { contents: tags } = await getBlogs({ fields: ["category"] });
+---
+
+<BaseLayout title={SITE.title} description={SITE.desc}>
+  <h2>タグ一覧</h2>
+  <ul class="tags">
+    {
+      tags.map((tag: any) => (
+        <li class="tag">
+          <a href={`/tags/${tag.category.id}`}>{tag.category.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+<style lang="scss">
+  a {
+    color: #fff;
+    text-decoration: none;
+    &:visited {
+      text-decoration: none;
+    }
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    font-weight: bold;
+  }
+  .tag {
+    margin: 0.25em;
+    border-radius: 0.5em;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    background-color: #0295b9;
+    list-style: none;
+    display: inline-block;
+  }
+</style>

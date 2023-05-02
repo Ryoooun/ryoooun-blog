@@ -1,5 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import HambugerButton from "./HambugerButton.astro";
+
 import { SITE } from "../config";
 ---
 
@@ -7,11 +9,7 @@ import { SITE } from "../config";
   <h1>
     {SITE.title}
   </h1>
-  <nav>
-    <HeaderLink href="/">Home</HeaderLink>
-    <HeaderLink href="/blog">Blog</HeaderLink>
-    <HeaderLink href="/about">About</HeaderLink>
-  </nav>
+  <HambugerButton />
 </header>
 <style lang="scss">
   $mq-breakpoints: (
@@ -34,11 +32,22 @@ import { SITE } from "../config";
       @content;
     }
   }
-
   header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 0em 0 2em;
+    @include mq(xs) {
+      display: block;
+    }
   }
   h2 {
     margin: 0.5em 0;
+  }
+  nav {
+    display: none;
+    @include mq(xs) {
+      display: inline;
+    }
   }
 </style>

@@ -17,6 +17,10 @@ export type Blog = {
     height: number;
     width: number;
   };
+  category: {
+    id: string;
+    name: string;
+  };
 };
 
 export type BlogResponse = {
