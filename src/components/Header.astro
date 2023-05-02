@@ -4,9 +4,9 @@ import { SITE } from "../config";
 ---
 
 <header>
-  <h2>
+  <h1>
     {SITE.title}
-  </h2>
+  </h1>
   <nav>
     <HeaderLink href="/">Home</HeaderLink>
     <HeaderLink href="/blog">Blog</HeaderLink>
@@ -14,6 +14,27 @@ import { SITE } from "../config";
   </nav>
 </header>
 <style lang="scss">
+  $mq-breakpoints: (
+    xl: 1440px,
+    lg: 1280px,
+    md: 1024px,
+    tb: 768px,
+    sm: 576px,
+    xs: 414px,
+  ) !default;
+
+  @mixin mq($breakpoint: md, $rule: min, $subtraction: false) {
+    $breakpoint: map-get($mq-breakpoints, $breakpoint);
+
+    @if $rule==max and $subtraction {
+      $breakpoint: $breakpoint - 0.0625;
+    }
+
+    @media screen and (#{$rule}-width: $breakpoint) {
+      @content;
+    }
+  }
+
   header {
     margin: 0em 0 2em;
   }

@@ -1,0 +1,75 @@
+---
+import { literal } from "astro/zod";
+import { getBlogs } from "../library/microcms";
+
+const { contents: posts } = await getBlogs({
+  fields: ["id", "title", "publishedAt", "eyecatch"],
+});
+---
+
+<div>
+  <ul>
+    {
+      posts.map((post) => (
+        <li class="card-body">
+          <a href={`/blog/${post.id}`}>
+            <img class="post-image" src={post.eyecatch.url} alt={post.title} />
+            <div class="card-bottom">
+              <h3>{post.title}</h3>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+<style lang="scss">
+  $mq-breakpoints: (
+    xl: 1440px,
+    lg: 1280px,
+    md: 1024px,
+    tb: 768px,
+    sm: 576px,
+    xs: 414px,
+  ) !default;
+
+  @mixin mq($breakpoint: md, $rule: min, $subtraction: false) {
+    $breakpoint: map-get($mq-breakpoints, $breakpoint);
+
+    @if $rule==max and $subtraction {
+      $breakpoint: $breakpoint - 0.0625;
+    }
+
+    @media screen and (#{$rule}-width: $breakpoint) {
+      @content;
+    }
+  }
+
+  .card-body {
+    border-radius: 0.5rem;
+    margin-bottom: 16px;
+    border-bottom: 4px solid #d3d3d3;
+  }
+  .post-image {
+    width: 13rem;
+    height: auto;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .card-bottom {
+    padding: 0 1rem;
+  }
+  li {
+    list-style: none;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>
