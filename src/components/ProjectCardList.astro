@@ -7,7 +7,7 @@ const { contents: posts } = await getBlogs({
 });
 ---
 
-<div>
+<div class="card-list">
   <ul>
     {
       posts.map((post) => (
@@ -44,30 +44,47 @@ const { contents: posts } = await getBlogs({
       @content;
     }
   }
-
   .card-body {
     border-radius: 0.5rem;
+    max-width: 100%;
     margin-bottom: 16px;
+    list-style: none;
     border-bottom: 4px solid #d3d3d3;
+    & a {
+      @include mq(xs) {
+        display: grid;
+        grid-template-columns: 4fr 8fr;
+        grid-template-areas: "figure section";
+        grid-template-rows: 10rem;
+        border-radius: 0.3rem;
+        border: 1px solid #d3d3d3;
+      }
+    }
   }
+
   .post-image {
-    width: 13rem;
+    width: 100%;
     height: auto;
     border-radius: 0.5rem 0.5rem 0 0;
+    @include mq(xs) {
+      grid-area: figure;
+      width: auto;
+      height: 100%;
+      border-radius: 0.2rem 0 0 0.2rem;
+    }
   }
   .card-bottom {
     padding: 0 1rem;
-  }
-  li {
-    list-style: none;
-  }
-  ul {
-    display: flex;
-    flex-direction: column;
-    padding-left: 0;
+    @include mq(xs) {
+      grid-area: section;
+    }
   }
   h3 {
     font-size: 20px;
+  }
+
+  ul {
+    padding-left: 0;
   }
   a {
     text-decoration: none;

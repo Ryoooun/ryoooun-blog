@@ -40,7 +40,7 @@ table {
   width: 100%;
 }
 img {
-  min-width: 100%;
+  /* min-width: 100%; */
   height: auto;
 }
 code {
