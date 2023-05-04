@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "Cica";
+  src: url("/font/Cica-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Cica", Arial, Helvetica, sans-serif;
+  /* margin: 0; */
+  /* padding: 0; */
+}
+
 body {
   font-family: Roboto, Geneva, Tahoma, sans-serif;
   margin: auto;
@@ -39,10 +56,10 @@ content {
 table {
   width: 100%;
 }
-img {
+/* img {
   /* min-width: 100%; */
-  height: auto;
-}
+/* height: auto; */
+/* } */
 code {
   padding: 2px 5px;
   background-color: #f2f2f2;

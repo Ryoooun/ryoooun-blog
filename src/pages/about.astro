@@ -1,71 +1,270 @@
 ---
 import BasePost from "../layouts/BasePost.astro";
+const nowMonth = new Date();
+type DiffMonth = (d1: Date, d2: Date) => Number;
+/**
+ * Caluculate the month difference of a period.
+ * @param {Date} d1 - Difference start date.
+ * @param {Date} d2 - Difference end date.
+ * @return {number} diff - diff month.
+ */
+const diffMonth: DiffMonth = (d1, d2) => {
+  let d1Month, d2Month;
+  d1Month = d1.getFullYear() * 12 + d1.getMonth();
+  d2Month = d2.getFullYear() * 12 + d2.getMonth();
+  return d2Month - d1Month;
+};
 ---
 
 <BasePost
-  title="About Me"
-  description="Lorem ipsum"
-  pubDate={new Date("August 08 2023")}
-  updatedDate={new Date("August 08 2023")}>
+  title="私について"
+  description="このページは自己紹介のページです。"
+  pubDate={new Date("May 05 2023")}
+  updatedDate={new Date("May 05 2023")}>
+  <h2>自己紹介</h2>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo
-    integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis
-    egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In
-    hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat.
-    Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu
-    non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim.
-    Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed
-    vulputate mi. Dictumst quisque sagittis purus sit amet.
+    はじめまして、私はYamashita Ryosukeと申します。<br
+    />私はIT業界への転職を目標に活動をしています。
   </p>
-
   <p>
-    Morbi tristique senectus et netus. Id semper risus in hendrerit gravida
-    rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus
-    sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris
-    rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus
-    dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-    massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius
-    morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras
-    ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est
-    ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa
-    ultricies mi.
+    多くのユーザーに利便性や楽しみを与えることのできるWebアプリケーションの開発に携わりたいという思いがあり、かねてより興味のあったIT業界での就職を決意しました。
   </p>
-
   <p>
-    Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque.
-    Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac
-    felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit
-    amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed
-    elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-    dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra.
-    Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum
-    consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus
-    ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-    facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed
-    risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor
-    vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus
-    non. Amet dictum sit amet justo donec enim.
+    現在はフロントエンドの学習をしており、このブログもその学習の遊び場として開設するに至りました。
   </p>
-
+  <h3>自身を表す言葉</h3>
   <p>
-    Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac
-    ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem
-    viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu
-    ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac
-    tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-    pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim
-    sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam.
-    Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+    仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/見た目はクール、中身はホット/
+    縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派
   </p>
+  <h2>保有スキルと経験(Not 実務)</h2>
+  <ul class="skill_wrapper">
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/html5.webp" alt="HTML5" />
+      </div>
+      <div class="skill_text">
+        <h3>HTML</h3><span
+          >学習歴{diffMonth(new Date("2023-1-01"), nowMonth)}ヶ月</span
+        >
+        <p>デザインカンプをもとに簡単な静的Webページの制作ができます。</p>
+        <p>Semantic HTMLやWAI-ARIAを意識したコーディングを心掛けています。</p>
+        <p>
+          このページのデザインはツッコミどころ満載ですが、Reactなどのライブラリ・フレームワークを使用したコンポーネントのコーディングも行っています。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/css3.webp" alt="CSS3" />
+      </div>
+      <div class="skill_text">
+        <h3>CSS</h3><span
+          >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          CSSの基本的なプロパティが理解でき、ドキュメントなどを参考にコーディングすることができます。
+        </p>
+        <p>
+          CSSメタ言語としてSCSSを利用しています。フレームワークでは、TailwindCSS/Bootstrap/Bulmaは使用できます。
+        </p>
+        <p>このブログも早くオシャレにしたいです。</p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img
+          class="skill_logo"
+          src="/public/img/javascript.webp"
+          alt="JavaScript"
+        />
+      </div>
+      <div class="skill_text">
+        <h3>JavaScript</h3><span
+          >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          ページのイベントに対する動的な処理が記述できます。非同期処理や各WebAPIを利用した機能の実装。
+          ライブラリのドキュメントを読みながら、自分のコードに適用していくことができるレベルです。
+        </p>
 
+        <p>Node.jsについても鋭意学習中</p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img
+          class="skill_logo"
+          src="/public/img/typescript.webp"
+          alt="TypeScript"
+        />
+      </div>
+      <div class="skill_text">
+        <h3>TypeScript</h3><span
+          >学習歴{diffMonth(new Date("2023-03-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          入門書やドキュメントを読みながら、自分が書いたJSのコードをリファクタリングできるレベルです。
+        </p>
+        <p>
+          今後自分でコーディングする上ではJavaScriptではなく、こちらをメインにしていきたい位には、恩恵を体感しています。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/python.webp" alt="Python" />
+      </div>
+      <div class="skill_text">
+        <h3>Python</h3><span
+          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          前職では、Webスクレイピングによるデータ収集と分析、ちょっとした業務の自動化（メール自動送信やエクセル・PDF処理）などに使用してました。
+        </p>
+        <p>
+          現在はFlaskを使用してWebアプリケーションのバックエンドの基本を学習しています。今後は機械学習やAIの領域も齧っていきたいです。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/react.webp" alt="React" />
+      </div>
+      <div class="skill_text">
+        <h3>React</h3><span
+          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          組み込みフックやカスタムフックを利用したコンポーネントの実装ができます。状態管理ではzustandを、非同期処理にはSWR、UIにはChakraUI、Framer-motionを使用できます。
+        </p>
+        <p>
+          Atomic
+          Designを意識した粒度の設定、データと見た目の疎結合を意識したコンポーネントの設計と実装を心がけています。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/nextjs.webp" alt="Next.js" />
+      </div>
+      <div class="skill_text">
+        <h3>Next.js</h3><span
+          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          ルーティングや動的パスからのページの生成、CSR・SSR・SSG・ISRのそれぞれのパフォーマンスの理解。Appディレクトリでのアプリケーション開発。Vercelへのデプロイまで行うことができます。
+        </p>
+        <p>
+          現在制作しているWebアプリケーションもこの環境にデプロイされています。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img
+          class="skill_logo"
+          src="/public/img/firebase.webp"
+          alt="Firebase"
+        />
+      </div>
+      <div class="skill_text">
+        <h3>Firebase</h3><span
+          >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          JavaScript
+          SDKを自作Webアプリケーションに組み込み、認証機能とFirestoreによるデータベース機能の実装に使用しました。
+        </p>
+        <p>
+          セキュリティについてはまだまだ課題ですが、ドキュメント型データベースの最適化を通してNoSQLへの理解が深まりました。
+        </p>
+      </div>
+    </li>
+    <li class="skill_card">
+      <div class="logo_wrapper">
+        <img class="skill_logo" src="/public/img/astro.webp" alt="Astro" />
+      </div>
+      <div class="skill_text">
+        <h3>Astro</h3><span
+          >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
+        >
+        <p>
+          このブログはAstroで開発されています。記事はmicroCMSから取得しており、microCMSに記事投稿→デプロイフックが発火しvercelに通知→vercelがfetchした内容でSSGして再デプロイしています。ヘッドレスCMS便利。
+        </p>
+      </div>
+    </li>
+  </ul>
+  <h2>Ohter</h2>
   <p>
-    Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus
-    imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu
-    cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum.
-    Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit
-    libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed
-    pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique
-    magna.
+    他の経験としては、
+    <br />
+    家業で使用していたN88Basic言語で作られたソフトウェアをElectronでモダンなアプリケーションに作り直しことがあります。紙印刷の数千行のコードを読んでのは今でもいい思い出で、根気よくソースを読むことの大切さと自分の力で一つのコンテンツを作り上げることの楽しさを学びました。
+    <br />
+    また、このブログで使用されている可愛いボクセルアートも制作しています。今後はボクセルをWebGLとしてWebに活かせられれば楽しいだろうなと研究しています。Three.jsも触っていきたい所存です。
   </p>
 </BasePost>
+<style lang="scss">
+  $mq-breakpoints: (
+    xl: 1440px,
+    lg: 1280px,
+    md: 1024px,
+    tb: 768px,
+    sm: 576px,
+    xs: 414px,
+  ) !default;
+
+  @mixin mq($breakpoint: md, $rule: min, $subtraction: false) {
+    $breakpoint: map-get($mq-breakpoints, $breakpoint);
+
+    @if $rule==max and $subtraction {
+      $breakpoint: $breakpoint - 0.0625;
+    }
+
+    @media screen and (#{$rule}-width: $breakpoint) {
+      @content;
+    }
+  }
+  .skill_wrapper {
+    padding-left: 0;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+  }
+  .skill_card {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    border: 1px solid #a3a3a3;
+    border-radius: 0.5rem;
+    align-items: center;
+  }
+  .logo_wrapper {
+    height: clamp(160px, 25vw, 200px);
+    // background-color: #a3a3a3;
+  }
+  .skill_logo {
+    border-radius: 0.5rem 0 0 0.5rem;
+    object-fit: cover;
+    overflow: hidden;
+    // width: 100%;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+  }
+  .skill_text {
+    /* height: clamp(100px, 25vw, 200px); */
+    font-size: clamp(10px, 2vw, 13px);
+    line-height: 1.2em;
+    & p {
+      padding: 0;
+      margin: 0;
+    }
+    & h3 {
+      padding: 0;
+      margin-bottom: 0.25rem;
+    }
+    & span {
+      font-size: clamp(8px, 1.5vw, 10px);
+    }
+  }
+</style>
