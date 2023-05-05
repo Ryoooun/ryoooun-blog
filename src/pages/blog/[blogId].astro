@@ -27,6 +27,7 @@ const blog = await getBlogDetail(blogId as string);
     width={blog.eyecatch.width}
     height={blog.eyecatch.height}
   /> -->
+<img src={blog.eyecatch.url} alt={blog.title} />
 <h1>{blog.title}</h1>
 <time datetime={blog.publishedAt}>
   {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
@@ -39,3 +40,9 @@ const blog = await getBlogDetail(blogId as string);
 <hr />
 <main set:html={blog.content} />
 <Footer />
+<style lang="scss">
+  img {
+    width: 100%;
+    height: auto;
+  }
+</style>
