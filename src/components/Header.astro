@@ -1,53 +1,10 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
 import HambugerButton from "./HambugerButton.astro";
-
+import BlogTitle from "../components/util/atoms/BlogTitle.astro";
 import { SITE } from "../config";
 ---
 
 <header>
-  <h1>
-    {SITE.title}
-  </h1>
+  <BlogTitle />
   <HambugerButton />
 </header>
-<style lang="scss">
-  $mq-breakpoints: (
-    xl: 1440px,
-    lg: 1280px,
-    md: 1024px,
-    tb: 768px,
-    sm: 576px,
-    xs: 414px,
-  ) !default;
-
-  @mixin mq($breakpoint: md, $rule: min, $subtraction: false) {
-    $breakpoint: map-get($mq-breakpoints, $breakpoint);
-
-    @if $rule==max and $subtraction {
-      $breakpoint: $breakpoint - 0.0625;
-    }
-
-    @media screen and (#{$rule}-width: $breakpoint) {
-      @content;
-    }
-  }
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0em 0 2em;
-    @include mq(xs) {
-      display: block;
-    }
-  }
-  h2 {
-    margin: 0.5em 0;
-  }
-  nav {
-    display: none;
-    @include mq(xs) {
-      display: inline;
-    }
-  }
-</style>

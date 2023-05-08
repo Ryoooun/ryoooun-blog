@@ -8,17 +8,10 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a
+  href={href}
+  class:list={[className, { active: isActive }]}
+  class="font-sans text-3xl text-gray-300 m-3 capitalize"
+  {...props}>
   <slot />
 </a>
-<style lang="scss">
-  a {
-    display: inline-block;
-    text-decoration: none;
-    font-size: 28px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #c4c4c4;
-    margin-bottom: 2rem;
-  }
-</style>

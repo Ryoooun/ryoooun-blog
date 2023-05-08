@@ -3,9 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ProjectCardList from "../components/ProjectCardList.astro";
-
-import "../styles/global.scss";
-
+import Heading2 from "../components/util/atoms/Heading2.astro";
 import { SITE } from "../config";
 
 import { getBlogs } from "../library/microcms";
@@ -19,14 +17,23 @@ const { contents: posts } = await getBlogs({
   <head>
     <BaseHead title={SITE.title} description={SITE.desc} />
   </head>
-  <body>
+  <body class="mx-4 sm:max-w-xl sm:mx-auto">
     <Header title={SITE.title} />
     <main>
-      <h2>I'm Ryosuke Yamashita</h2>
-      <p>個人的な学習や趣味をまとめたブログです。</p>
-      <h2>Projects</h2>
+      <div class="mb-8">
+        <h2 class="text-xl mb-2">I'm Ryosuke Yamashita</h2>
+        <p class="text-md leading-relaxed">
+          個人的な学習や趣味をまとめたブログです。<br
+          />入口に入る準備を淡々と、淡々と。
+          <br />
+          "引けば老いるぞ億せば死ぬぞ"の境地
+          <br />
+          <a href="/about" class="text-blue-600 font-semibold">About me</a>
+        </p>
+      </div>
+      <Heading2>制作しているもの</Heading2>
       <ProjectCardList />
-      <h2>Latest from blog</h2>
+      <Heading2>最近の記事</Heading2>
       <ProjectCardList />
     </main>
     <Footer />
