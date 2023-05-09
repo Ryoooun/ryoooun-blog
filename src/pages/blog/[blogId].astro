@@ -6,6 +6,12 @@ import Footer from "../../components/Footer.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 
 import { getBlogs, getBlogDetail } from "../../library/microcms";
+
+import {load} from "cheerio"
+import hljs from 'highlight.js'
+import "highlight.js/styles/atom-one-dark-reasonable.css"
+
+
 export async function getStaticPaths() {
   const response = await getBlogs({ fields: ["id"] });
   return response.contents.map((content: any) => ({
@@ -17,17 +23,18 @@ export async function getStaticPaths() {
 
 const { blogId } = Astro.params;
 const blog = await getBlogDetail(blogId as string);
+
+const $ = load(blog.content);
+$("pre code").each((_, elm) => {
+  const result = hljs.highlightAuto($(elm).text())
+  $(elm).html(result.value)
+  $(elm).addClass("javascript hljs")
+})
 ---
 
 <BaseHead title={blog.title} description="blog" />
 <Header />
-<!-- <img
-    src={blog.eyecatch?.url ?? ""}
-    alt="eyecatch"
-    width={blog.eyecatch.width}
-    height={blog.eyecatch.height}
-  /> -->
-<img src={blog.eyecatch.url} alt={blog.title} />
+<img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} />
 <h1>{blog.title}</h1>
 <time datetime={blog.publishedAt}>
   {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
@@ -38,7 +45,7 @@ const blog = await getBlogDetail(blogId as string);
   </time>
 </p>
 <hr />
-<main set:html={blog.content} />
+<main set:html={$.html()} />
 <Footer />
 <style lang="scss">
   img {
