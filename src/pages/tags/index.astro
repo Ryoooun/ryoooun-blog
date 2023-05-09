@@ -3,18 +3,26 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import { getBlogs } from "../../library/microcms";
 import { SITE } from "../../config";
-const { contents: tags } = await getBlogs({ fields: ["category"] });
+import { map } from "cheerio/lib/api/traversing";
+const { contents: posts } = await getBlogs({ fields: ["category"] });
+const tags = Array.from(
+  posts.reduce((map, currentitem) =>
+    map.set(currentitem.category.id, currentitem),
+    new Map()
+  ).values()
+)
 ---
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
   <h2>タグ一覧</h2>
   <ul class="tags">
     {
-      tags.map((tag: any) => (
+      tags.map( tag => (
         <li class="tag">
           <a href={`/tags/${tag.category.id}`}>{tag.category.name}</a>
         </li>
       ))
+
     }
   </ul>
 </BaseLayout>

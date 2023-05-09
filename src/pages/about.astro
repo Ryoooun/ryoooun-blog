@@ -1,5 +1,7 @@
 ---
 import BasePost from "../layouts/BasePost.astro";
+import BaseLayout from '../layouts/BaseLayout.astro'
+
 const nowMonth = new Date();
 type DiffMonth = (d1: Date, d2: Date) => Number;
 /**
@@ -16,11 +18,7 @@ const diffMonth: DiffMonth = (d1, d2) => {
 };
 ---
 
-<BasePost
-  title="私について"
-  description="このページは自己紹介のページです。"
-  pubDate={new Date("May 05 2023")}
-  updatedDate={new Date("May 05 2023")}>
+<BaseLayout>
   <h2>自己紹介</h2>
   <p>
     はじめまして、私はYamashita Ryosukeと申します。<br
@@ -191,7 +189,7 @@ const diffMonth: DiffMonth = (d1, d2) => {
     <br />
     また、このブログで使用されている可愛いボクセルアートも制作しています。今後はボクセルをWebGLとしてWebに活かせられれば楽しいだろうなと研究しています。Three.jsも触っていきたい所存です。
   </p>
-</BasePost>
+</BaseLayout>
 <style lang="scss">
   $mq-breakpoints: (
     xl: 1440px,
