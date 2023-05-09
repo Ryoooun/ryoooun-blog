@@ -13,25 +13,7 @@ const { title, description } = Astro.props;
   </head>
   <body class="mx-4 sm:max-w-4xl md:max-w-6xl sm:mx-auto relative h-max">
     <Header />
-      <div id="swaup" class="transition-fade">
         <slot />
-      </div>
     <Footer>
   </body>
 </html>
-<style>
-  .transition-fade {
-    transition: .4s;
-    opacity: 1;
-  }
-
-  html.is-animating .transition-fade {
-    opacity: 0;
-  }
-</style>
-<script>
-  import Swup from 'swup'
-  const swup = new Swup({
-
-  })
-</script>
