@@ -27,23 +27,41 @@ console.log(crumbsArray)
     </path><polyline points="9 22 9 12 15 12 15 22"></polyline>
   </svg>Home
     </a></li>
-    {crumbsArray.map((c, i) => (
-      <svg
-      class="w-4 h-4 sm:w-6 sm:h-6 align-bottom"
-    slot="separator"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="#a3a3a3"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    ><polyline points="9 18 15 12 9 6"></polyline>
-  </svg>
-      <li class="last:text-blue-300 text-md sm:text-xl">
-        <a class="capitalize" href={`/${c}`}>{["tags", "blog"].includes(c) ? c : ""}</a>
-      </li>
-    )
+    {crumbsArray.map((c, i) => {
+      if(["tags", "blog"].includes(c)){
+        return (
+        <svg
+        class="w-4 h-4 sm:w-6 sm:h-6 align-bottom"
+      slot="separator"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#a3a3a3"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+        <li class="last:text-blue-300 text-md sm:text-xl">
+          <a class="capitalize" href={`/${c}`}>{c}</a>
+        </li>
+      )} else {
+        return (
+        <svg
+        class="w-4 h-4 sm:w-6 sm:h-6 align-bottom"
+      slot="separator"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#a3a3a3"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+        )
+      }
+      }
     )}
   </ul>
 </nav>
