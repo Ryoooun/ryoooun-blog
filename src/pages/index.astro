@@ -17,24 +17,7 @@ const { contents: posts } = await getBlogs({
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
   <main class="mx-10">
-    <div class="flex flex-row">
-      <div class="grid bg-gray-300 w-36 h-36 rounded-full place-content-center">
-        <img src="" alt="">
-      </div>
-      <div class="mb-8 ml-8 w-80">
-        <h2 class="text-xl mb-2">Ryosuke Yamashita</h2>
-        <p class="text-md leading-relaxed">
-          個人的な学習や趣味をまとめたブログです。<br
-          />入口に入る準備を淡々と、淡々と。
-          <br />
-          "引けば老いるぞ億せば死ぬぞ"の境地
-          <br />
-          とりあえずやってみるタイプ
-          <br />
-        </p>
-        <a href="/about" class="text-blue-600 font-semibold block text-right">About me</a>
-      </div>
-    </div>
+    <Introduce />
     <Heading2>制作しているもの</Heading2>
     <ProjectCardList />
     <Heading2>最近の記事</Heading2>

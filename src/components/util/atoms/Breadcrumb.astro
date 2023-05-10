@@ -1,0 +1,10 @@
+---
+export async function getStaticPaths() {
+  return [
+   { params: { id: '1' } },
+ ];
+}
+
+const { id } = Astro.props;
+---
+<h1>{id}</h1>

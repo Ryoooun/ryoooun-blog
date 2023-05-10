@@ -1,6 +1,6 @@
 ---
 import { literal } from "astro/zod";
-import { getBlogs } from "../library/microcms";
+import { getBlogs } from "../../../library/microcms";
 
 const { contents: posts } = await getBlogs({
   fields: ["id", "title", "publishedAt", "eyecatch"],
@@ -10,7 +10,7 @@ const { contents: posts } = await getBlogs({
 <div>
   <ul class="mb-16 flex flex-wrap list-none m-0 p-0 gap-y-4">
     {
-      posts.slice(0, 3).map((post) => (
+      posts.map((post) => (
         <li class="flex p-0 sm:p-4 sm:w-1/2 md:w-1/3">
           <div class="bg-white rounded shadow-2xl flex flex-col overflow-hidden hover:scale-105 duration-500">
 

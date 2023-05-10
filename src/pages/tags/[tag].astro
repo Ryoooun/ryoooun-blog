@@ -5,7 +5,7 @@ import { getBlogs } from "../../library/microcms";
 import { SITE } from "../../config";
 export async function getStaticPaths() {
   const { contents: posts } = await getBlogs({
-    fields: ["id", "title", "category"],
+    fields: ["id", "title", "category", "eyecatch"],
   });
   const uniqueTags = [...new Set(posts.map((post) => post.category.id).flat())];
   return uniqueTags.map((tag) => {
@@ -24,14 +24,36 @@ const { posts } = Astro.props;
 ---
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
-  <h2>"{posts[0].category.name}"の記事一覧</h2>
-  <ul>
-    {
-      posts.map((post: any) => (
-        <li>
-          <a href={`/blog/${post.id}`}>{post.title}</a>
+  <main class="mx-10">
+    <h2 class="text-2xl font-bold mb-8">"{posts[0].category.name}"の記事一覧</h2>
+    <ul class="mb-16 flex flex-wrap list-none m-0 p-0 gap-y-4">
+      {
+        posts.map((post: any) => (
+          // <li>
+          //   <a href={`/blog/${post.id}`}>{post.title}</a>
+          // </li>
+          <li class="flex p-0 sm:p-4 sm:w-1/2 md:w-1/3">
+          <div class="bg-white rounded shadow-2xl flex flex-col overflow-hidden hover:scale-105 duration-500">
+              <img
+                class="max-w-full align-middle object-contain"
+                src={post.eyecatch?.url ? post.eyecatch.url : ""}
+                alt={post.title}
+              />
+
+            <div class="h-full p-4 bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 flex flex-col">
+              <h3 class="text-white text-lg font-bold tracking-wider mb-6">
+                {post.title}
+              </h3>
+              <a
+                class="text-white p-1 text-lg uppercase text-center rounded-md font-normal block w-full cursor-pointer border boder-white border-opacity-5  hover:opacity-60 transition-all duration-200 mt-auto"
+                href={`/blog/${post.id}`}>
+                Read more
+              </a>
+            </div>
+          </div>
         </li>
-      ))
-    }
-  </ul>
+        ))
+      }
+    </ul>
+  </main>
 </BaseLayout>

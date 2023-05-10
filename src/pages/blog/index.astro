@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-
+import PostCardList from '../../components/util/organisms/PostCardList.astro'
 import { SITE } from "../../config";
 
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -12,8 +12,8 @@ const { contents: posts } = await getBlogs({
 ---
 
 <BaseLayout title={SITE.title} descritpion={SITE.desc}>
-  <section>
-    <ul>
+  <section class="mx-10">
+    <!-- <ul>
       {
         posts.map((post) => (
           <li>
@@ -24,7 +24,8 @@ const { contents: posts } = await getBlogs({
           </li>
         ))
       }
-    </ul>
+    </ul> -->
+    <PostCardList />
   </section>
   <style>
     ul {
