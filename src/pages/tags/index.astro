@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from '../../components/util/atoms/Breadcrumb.astro'
 
 import { getBlogs } from "../../library/microcms";
 import { SITE } from "../../config";
@@ -15,6 +16,7 @@ const tags = Array.from(
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
   <main class="mx-10">
+    <Breadcrumbs />
     <h2 class="text-2xl font-bold mb-8">タグ一覧</h2>
     <ul class="flex flex-wrap my-0 mx-auto font-bold">
       {

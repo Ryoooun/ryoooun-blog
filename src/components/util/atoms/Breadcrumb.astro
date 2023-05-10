@@ -1,10 +1,51 @@
 ---
-export async function getStaticPaths() {
-  return [
-   { params: { id: '1' } },
- ];
-}
+import { literal } from 'astro/zod'
 
-const { id } = Astro.props;
+const crumbs = Astro.url.pathname
+const { placeholder } = Astro.props
+
+const crumbsArray = [...crumbs.split("/")]
+crumbsArray.shift()
+console.log(crumbsArray)
 ---
-<h1>{id}</h1>
+
+<nav class="mb-6">
+  <ul class="flex flex-row gap-0 sm:gap-4 text-md sm:text-xl text-blue-500 items-center">
+    <li><a href="/" class="flex flex-row gap-2 items-center">
+      <svg
+      class="sm:w-6 sm:h-6 w-5 h-5"
+    slot="index"
+    aria-label="Home Page"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+    </path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+  </svg>Home
+    </a></li>
+    {crumbsArray.map((c, i) => (
+      <svg
+      class="w-4 h-4 sm:w-6 sm:h-6 align-bottom"
+    slot="separator"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="#a3a3a3"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    ><polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+      <li class="last:text-blue-300 text-md sm:text-xl">
+        <a class="capitalize" href={`/${c}`}>{["tags", "blog"].includes(c) ? c : ""}</a>
+      </li>
+    )
+    )}
+  </ul>
+</nav>
+
+

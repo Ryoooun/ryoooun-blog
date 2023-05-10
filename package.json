@@ -14,6 +14,7 @@
     "@fontsource/noto-sans-jp": "^4.5.12",
     "astro": "^2.4.2",
     "astro-bootstrap": "^0.5.13",
+    "astro-breadcrumbs": "^1.6.0",
     "microcms-js-sdk": "^2.3.3",
     "sass": "^1.62.1",
     "swup": "^3.0.6",

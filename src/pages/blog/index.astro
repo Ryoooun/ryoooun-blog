@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCardList from '../../components/util/organisms/PostCardList.astro'
+import Breadcrumb from  "../../components/util/atoms/Breadcrumb.astro"
+
 import { SITE } from "../../config";
 
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -9,22 +11,13 @@ import { getBlogs } from "../../library/microcms";
 const { contents: posts } = await getBlogs({
   fields: ["id", "title", "publishedAt"],
 });
+
+const crumbs = Astro.url.pathname
 ---
 
 <BaseLayout title={SITE.title} descritpion={SITE.desc}>
   <section class="mx-10">
-    <!-- <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <time datetime={post.publishedAt}>
-              {new Date(post.publishedAt).toLocaleDateString("ja-JP")}
-            </time>
-            <a href={`/blog/${post.id}`}>{post.title}</a>
-          </li>
-        ))
-      }
-    </ul> -->
+    <Breadcrumb />
     <PostCardList />
   </section>
   <style>

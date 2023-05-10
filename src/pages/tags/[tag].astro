@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from '../../components/util/atoms/Breadcrumb.astro'
 
 import { getBlogs } from "../../library/microcms";
 import { SITE } from "../../config";
@@ -25,6 +26,7 @@ const { posts } = Astro.props;
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
   <main class="mx-10">
+    <Breadcrumbs placeholder={posts[0].category.name}/>
     <h2 class="text-2xl font-bold mb-8">"{posts[0].category.name}"の記事一覧</h2>
     <ul class="mb-16 flex flex-wrap list-none m-0 p-0 gap-y-4">
       {
