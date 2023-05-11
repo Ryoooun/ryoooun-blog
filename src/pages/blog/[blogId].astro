@@ -12,7 +12,8 @@ import { getBlogs, getBlogDetail } from "../../library/microcms";
 import {load} from "cheerio"
 import hljs from 'highlight.js'
 import "highlight.js/styles/atom-one-dark-reasonable.css"
-
+import { __astro_tag_component__ } from "astro/dist/runtime/server";
+import styles from '../../styles/blogstyle.module.scss'
 
 export async function getStaticPaths() {
   const response = await getBlogs({ fields: ["id"] });
@@ -32,24 +33,72 @@ $("pre code").each((_, elm) => {
   $(elm).html(result.value)
   $(elm).addClass("javascript hljs")
   $(elm).css('border-radius', '0.5rem')
-  $(elm).css('font-family', '"Cica"')
 })
+$("h1").each((_, elm) => {
+  $(elm).addClass(`${styles.heading1}`)
+})
+$("h2").each((_, elm) => {
+  $(elm).addClass(`${styles.heading2}`)
+})
+$("h3").each((_, elm) => {
+  $(elm).addClass(`${styles.heading3}`)
+})
+$("h4").each((_, elm) => {
+  $(elm).addClass(`${styles.heading4}`)
+})
+$('h5').each((_, elm) => {
+  $(elm).addClass(`${styles.heading5}`)
+})
+$('strong').each((_, elm) => {
+  $(elm).addClass(`${styles.strong}`)
+})
+$('code').each((_, elm) => {
+  const result = hljs.highlightAuto($(elm).text())
+  $(elm).html(result.value)
+  $(elm).addClass("javascript hljs")
+})
+$('blockquote').each((_, elm) => {
+  $(elm).addClass(`${styles.blockquote}`)
+})
+$('ol').each((_, elm) => {
+  $(elm).addClass(`${styles.ordered_list}`)
+})
+$('ul').each((_, elm) => {
+  $(elm).addClass(`${styles.unordered_list}`)
+})
+//@ts-ignore
+$('a').each(async(_, elm) => {
+  try {
+    const res = await fetch(`${$(elm).attr('href')}`)
+    const text = await res.text()
+    const load$ = await load(text)
+    const image = await load$("meta[property='og:image']").attr('content')
+    const desc = await load$("meta[property='og:description']").attr('content')
+    const title = await load$("meta[property='og:title']").attr('content')
+    console.log(image)
+    console.log(desc)
+    console.log(title)
+  } catch (e) {
+    console.error(e)
+  }
+})
+
 ---
 
 <BaseLayout>
   <section class="mx-8 sm:mx-10">
     <Breadcrumbs placeholder={blog.title} />
-    <h1 class="text-3xl">{blog.title}</h1>
+    <h1 class="text-3xl mb-4">{blog.title}</h1>
     <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-lg"/>
-    <time datetime={blog.publishedAt}>
+    <time class="text-gray-500 font-mono" datetime={blog.publishedAt}>
       {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
     </time>
-    <p>
+    <p class="text-gray-500 font-mono">
       最終更新日：<time datetime={blog.publishedAt}>
         {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
       </time>
     </p>
-    <hr />
+    <hr class="my-4"/>
     <main set:html={$.html()} />
   </section>
 </BaseLayout>

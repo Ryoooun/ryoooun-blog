@@ -1,0 +1,30 @@
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1536px;
+
+$breakpoints: (
+  'sm': 'screen and (max-width: #{$sm})',
+  'md': 'screen and (max-width: #{$md})',
+  'lg': 'screen and (max-width: #{$lg})',
+  'xl': 'screen and (max-width: #{$xl})',
+  'xxl': 'screen and (max-width: #{$xxl})',
+);
+
+@mixin mq($size) {
+  @media #{map-get($breakpoints, $size)} {
+    @content;
+  }
+}
+
+@function get_vw($size, $viewport: 375) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}
+
+@mixin fz_vw($font_size: 10) {
+  font-size: $font_size * 1px;
+  font-size: get_vw($font_size)
+}
+
