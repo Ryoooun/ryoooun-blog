@@ -2,7 +2,7 @@
 // import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/util/atoms/Breadcrumb.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-// import OgpCard from "../../components/util/atoms/OgpCard.astro"
+
 
 import { getBlogDetail,getBlogs } from "../../library/microcms";
 
@@ -24,51 +24,47 @@ export async function getStaticPaths() {
 const { blogId } = Astro.params;
 const blog = await getBlogDetail(blogId as string);
 
-const $ = load(blog.content);
+// const $ = load(blog.content);
 
-$("pre code").each((_, elm) => {
-  const result = hljs.highlightAuto($(elm).text())
-  $(elm).html(result.value)
-  $(elm).addClass("javascript hljs")
-  $(elm).css('border-radius', '0.5rem')
-})
-$("h1").each((_, elm) => {
-  $(elm).addClass(`${styles.heading1}`)
-})
-$("h2").each((_, elm) => {
-  $(elm).addClass(`${styles.heading2}`)
+// $("pre code").each((_, elm) => {
+//   const result = hljs.highlightAuto($(elm).text())
+//   $(elm).html(result.value)
+//   $(elm).addClass("javascript hljs")
+//   $(elm).css('border-radius', '0.5rem')
+// })
+// $("h1").each((_, elm) => {
+//   $(elm).addClass(`${styles.heading1}`)
+// })
+// $("h2").each((_, elm) => {
+//   $(elm).addClass(`${styles.heading2}`)
 
-})
-$("h3").each((_, elm) => {
-  $(elm).addClass(`${styles.heading3}`)
-})
-$("h4").each((_, elm) => {
-  $(elm).addClass(`${styles.heading4}`)
-})
-$('h5').each((_, elm) => {
-  $(elm).addClass(`${styles.heading5}`)
-})
-$('strong').each((_, elm) => {
-  $(elm).addClass(`${styles.strong}`)
-})
-$('code').each((_, elm) => {
-  const result = hljs.highlightAuto($(elm).text())
-  $(elm).html(result.value)
-  $(elm).addClass("javascript hljs")
-})
-$('blockquote').each((_, elm) => {
-  $(elm).addClass(`${styles.blockquote}`)
-})
-$('ol').each((_, elm) => {
-  $(elm).addClass(`${styles.ordered_list}`)
-})
-$('ul').each((_, elm) => {
-  $(elm).addClass(`${styles.unordered_list}`)
-})
-
-$('a').each((_, elm) => {
-  $(elm).addClass('ogp_card')
-})
+// })
+// $("h3").each((_, elm) => {
+//   $(elm).addClass(`${styles.heading3}`)
+// })
+// $("h4").each((_, elm) => {
+//   $(elm).addClass(`${styles.heading4}`)
+// })
+// $('h5').each((_, elm) => {
+//   $(elm).addClass(`${styles.heading5}`)
+// })
+// $('strong').each((_, elm) => {
+//   $(elm).addClass(`${styles.strong}`)
+// })
+// $('code').each((_, elm) => {
+//   const result = hljs.highlightAuto($(elm).text())
+//   $(elm).html(result.value)
+//   $(elm).addClass("javascript hljs")
+// })
+// $('blockquote').each((_, elm) => {
+//   $(elm).addClass(`${styles.blockquote}`)
+// })
+// $('ol').each((_, elm) => {
+//   $(elm).addClass(`${styles.ordered_list}`)
+// })
+// $('ul').each((_, elm) => {
+//   $(elm).addClass(`${styles.unordered_list}`)
+// })
 
 ---
 
@@ -86,8 +82,8 @@ $('a').each((_, elm) => {
         </time>
       </p>
     </div>
-    <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-lg"/>
+    <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-xl shadow-lg"/>
     <hr class="my-4"/>
-    <main set:html={$.html()} />
+    <main set:html={blog.content} />
   </section>
 </BaseLayout>

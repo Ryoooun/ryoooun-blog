@@ -36,6 +36,7 @@
 .heading3 {
   font-size: calc((112.5% + 0.25vw) * 1.2);
   font-weight: 600;
+  margin: 1rem 0;
   padding: .1rem 1rem .1rem 1rem;
   position: relative;
   &::after {
@@ -54,11 +55,13 @@
 
  .heading4 {
   font-size: calc((112.5% + 0.25vw)* 1.1);
+  margin: .5rem 0;
  }
 
  .heading5 {
   font-size: calc((112.5% + 0.25vw)* 1.1);
   color: #797979;
+  margin: .2rem 0;
  }
 
  .strong {
@@ -127,7 +130,46 @@
   }
 }
 
+.ogp_card {
+  > a {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      border: 1px solid #5e5e5e;
+      border-radius: .5rem;
+      min-height: 8rem;
+      > .ogp_body {
+        flex: 2 0 20%
+      }
+    }
+}
+.ogp_body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 1rem;
+  font-size: calc((112.5% + 0.25vw) * 0.7);
+}
+.ogp_url {
+  display: flex;
+  flex-direction: row;
+}
 
+.ogp_image {
+  border-radius: 0 .5rem .5rem 0;
+  background-color: blue;
+  flex: 1 0 25%;
+  overflow: hidden;
+  > img {
+    object-fit: none;
+    height: 100%;
+    object-position: center;
+  }
+}
+
+.img {
+border-radius: .5rem;
+}
 
 
 
