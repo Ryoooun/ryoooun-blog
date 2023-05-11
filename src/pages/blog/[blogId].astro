@@ -9,7 +9,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro"
 
 import { getBlogs, getBlogDetail } from "../../library/microcms";
 
-import {load} from "cheerio"
+import fromURL,{load} from "cheerio"
+
 import hljs from 'highlight.js'
 import "highlight.js/styles/atom-one-dark-reasonable.css"
 import { __astro_tag_component__ } from "astro/dist/runtime/server";
@@ -39,6 +40,7 @@ $("h1").each((_, elm) => {
 })
 $("h2").each((_, elm) => {
   $(elm).addClass(`${styles.heading2}`)
+
 })
 $("h3").each((_, elm) => {
   $(elm).addClass(`${styles.heading3}`)
@@ -66,18 +68,24 @@ $('ol').each((_, elm) => {
 $('ul').each((_, elm) => {
   $(elm).addClass(`${styles.unordered_list}`)
 })
+
 //@ts-ignore
-$('a').each(async(_, elm) => {
+ $('a').each(async (_, elm) => {
   try {
-    const res = await fetch(`${$(elm).attr('href')}`)
+    const url = `${$(elm).attr('href')}`
+    const res = await fetch(url)
     const text = await res.text()
-    const load$ = await load(text)
-    const image = await load$("meta[property='og:image']").attr('content')
-    const desc = await load$("meta[property='og:description']").attr('content')
-    const title = await load$("meta[property='og:title']").attr('content')
+    const load$ = load(text)
+    const image = load$("meta[property='og:image']").attr('content')
+    const desc = load$("meta[property='og:description']").attr('content')
+    const title = load$("meta[property='og:title']").attr('content')
     console.log(image)
     console.log(desc)
     console.log(title)
+    $(elm).append(
+      `<div class='ogp_card'><a href="${url}" target="_blank"><p>${title}</p><p>${desc ? desc : ""}</p></a></div>`
+      )
+
   } catch (e) {
     console.error(e)
   }
@@ -86,7 +94,7 @@ $('a').each(async(_, elm) => {
 ---
 
 <BaseLayout>
-  <section class="mx-8 sm:mx-10">
+  <section class="mx-4 sm:mx-10">
     <Breadcrumbs placeholder={blog.title} />
     <h1 class="text-3xl mb-4">{blog.title}</h1>
     <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-lg"/>
