@@ -1,20 +1,16 @@
 ---
 // import BaseLayout from "../../layouts/BaseLayout.astro";
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import FormattedDate from "../../components/FormattedDate.astro";
-import Breadcrumbs from "../../components/util/atoms/Breadcrumb.astro"
-import BaseLayout from "../../layouts/BaseLayout.astro"
+import Breadcrumbs from "../../components/util/atoms/Breadcrumb.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import OgpCard from "../../components/util/atoms/OgpCard.astro"
 
-import { getBlogs, getBlogDetail } from "../../library/microcms";
+import { getBlogDetail,getBlogs } from "../../library/microcms";
 
-import fromURL,{load} from "cheerio"
+import { load } from "cheerio";
 
-import hljs from 'highlight.js'
-import "highlight.js/styles/atom-one-dark-reasonable.css"
-import { __astro_tag_component__ } from "astro/dist/runtime/server";
-import styles from '../../styles/blogstyle.module.scss'
+import hljs from 'highlight.js';
+import "highlight.js/styles/atom-one-dark-reasonable.css";
+import styles from '../../styles/blogstyle.module.scss';
 
 export async function getStaticPaths() {
   const response = await getBlogs({ fields: ["id"] });
@@ -29,6 +25,7 @@ const { blogId } = Astro.params;
 const blog = await getBlogDetail(blogId as string);
 
 const $ = load(blog.content);
+
 $("pre code").each((_, elm) => {
   const result = hljs.highlightAuto($(elm).text())
   $(elm).html(result.value)
@@ -69,26 +66,8 @@ $('ul').each((_, elm) => {
   $(elm).addClass(`${styles.unordered_list}`)
 })
 
-//@ts-ignore
- $('a').each(async (_, elm) => {
-  try {
-    const url = `${$(elm).attr('href')}`
-    const res = await fetch(url)
-    const text = await res.text()
-    const load$ = load(text)
-    const image = load$("meta[property='og:image']").attr('content')
-    const desc = load$("meta[property='og:description']").attr('content')
-    const title = load$("meta[property='og:title']").attr('content')
-    console.log(image)
-    console.log(desc)
-    console.log(title)
-    $(elm).append(
-      `<div class='ogp_card'><a href="${url}" target="_blank"><p>${title}</p><p>${desc ? desc : ""}</p></a></div>`
-      )
-
-  } catch (e) {
-    console.error(e)
-  }
+$('a').each((_, elm) => {
+  $(elm).addClass('ogp_card')
 })
 
 ---
@@ -97,15 +76,17 @@ $('ul').each((_, elm) => {
   <section class="mx-4 sm:mx-10">
     <Breadcrumbs placeholder={blog.title} />
     <h1 class="text-3xl mb-4">{blog.title}</h1>
-    <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-lg"/>
-    <time class="text-gray-500 font-mono" datetime={blog.publishedAt}>
-      {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
-    </time>
-    <p class="text-gray-500 font-mono">
-      最終更新日：<time datetime={blog.publishedAt}>
-        {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
+    <div class="flex items-end flex-col">
+      <time class="text-gray-500 font-mono" datetime={blog.publishedAt}>
+        投稿日:{new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
       </time>
-    </p>
+      <p class="text-gray-500 font-mono">
+        最終更新日:<time datetime={blog.publishedAt}>
+          {new Date(blog.publishedAt).toLocaleDateString("ja-JP")}
+        </time>
+      </p>
+    </div>
+    <img src={blog.eyecatch?.url ? blog.eyecatch.url : ""} alt={blog.title} class="rounded-lg"/>
     <hr class="my-4"/>
     <main set:html={$.html()} />
   </section>
