@@ -104,7 +104,8 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
       $(elm).addClass(`${styles.unordered_list}`)
     })
     $('img').each((_, elm) => {
-      $(elm).addClass(`${styles.img}`)
+      $(elm).wrap('<div class="w-full flex justify-center"></div>')
+      $(elm).addClass(`rounded-xl shadow-lg sm:max-w-2xl`)
     })
 
     if($('html').find('a').attr('href')){
@@ -117,7 +118,7 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
         const image = $href('meta[property="og:image"]').attr('content')
         const desc = $href('meta[property="og:description"]').attr('content')
         const title = $href('meta[property="og:title"]').attr('content')
-        $(elm).html(`<div class="${styles.ogp_card} shadow-lg">
+        $(elm).html(`<div class="${styles.ogp_card} shadow-xl">
         <div class="${styles.ogp_body}">
           <p class="${styles.ogp_desc}">
             <span>${title ?? ""}</span>
