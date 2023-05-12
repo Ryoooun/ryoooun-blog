@@ -137,13 +137,16 @@
   > a {
     display: flex;
     flex-direction: row;
-    max-height: 12rem;
     gap: 1rem;
     justify-content: space-between;
     border-radius: .5rem;
     overflow: hidden;
+    max-height: 8rem;
     > .ogp_body {
       flex: 2 0 20%
+    }
+    @include mixin.mq(sm){
+      max-height: 12rem;
     }
   }
 }
