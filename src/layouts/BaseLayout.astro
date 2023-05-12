@@ -5,12 +5,12 @@ import Footer from "../components/Footer.astro";
 
 import "@fontsource/noto-sans-jp";
 
-const { title, description } = Astro.props;
+const { title, description, ogp } = Astro.props;
 ---
 
 <html lang="ja">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} ogp={ogp}/>
   </head>
   <body class="sm:max-w-4xl md:max-w-6xl sm:mx-auto relative h-max">
     <Header />
