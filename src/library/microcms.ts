@@ -2,7 +2,6 @@ import { createClient, MicroCMSContentId, MicroCMSDate, MicroCMSQueries } from "
 import styles from '../styles/blogstyle.module.scss'
 import {load} from 'cheerio'
 import hljs from 'highlight.js';
-import { string } from "astro/zod";
 
 
 const client = createClient({
@@ -68,7 +67,10 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
       const filename = $(elm).text().split("\n",1)[0]
       const code = $(elm).text().replace(filename,"").trim()
       const result = hljs.highlightAuto(code)
-      console.log(result)
+      const test = result.value.split(/\n/)
+      test.map((value, index) => {
+        console.log(value)
+      })
       $(elm).html(result.value)
       $(elm).addClass(`hljs ${styles.code}`)
       $(elm).css('border-radius', '0.5rem')
@@ -96,7 +98,7 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
     $('code').each((_, elm) => {
       const result = hljs.highlightAuto($(elm).text())
       $(elm).html(result.value)
-      $(elm).addClass("javascript hljs")
+      $(elm).addClass("hljs")
     })
     $('blockquote').each((_, elm) => {
       $(elm).addClass(`${styles.blockquote}`)

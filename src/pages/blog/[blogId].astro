@@ -6,11 +6,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
 import { getBlogDetail,getBlogs } from "../../library/microcms";
 
-import { load } from "cheerio";
-
-import hljs from 'highlight.js';
 import "highlight.js/styles/atom-one-dark-reasonable.css";
-import styles from '../../styles/blogstyle.module.scss';
 
 export async function getStaticPaths() {
   const response = await getBlogs({ fields: ["id"] });
