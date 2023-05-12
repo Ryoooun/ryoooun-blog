@@ -137,10 +137,10 @@
   > a {
     display: flex;
     flex-direction: row;
+    max-height: 12rem;
     gap: 1rem;
     justify-content: space-between;
     border-radius: .5rem;
-    height: 8rem;
     overflow: hidden;
     > .ogp_body {
       flex: 2 0 20%
@@ -178,7 +178,9 @@
   flex-direction: row;
   justify-content: flex-end;
   overflow: hidden;
-  flex: 1 1 30%;
+  flex: 1 1 25%;
+  width: 100%;
+  // background-color: blueviolet;
   > img {
     object-fit: contain;
     height: 100%;
