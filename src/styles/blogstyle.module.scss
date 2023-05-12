@@ -142,7 +142,7 @@
 
 .ogp_card {
   max-width: 90vw;
-  margin: 1rem auto;
+  margin: .5rem auto 0;
   border-radius: .5rem;
   transition: all .4s;
   > :hover {
@@ -151,7 +151,7 @@
   > a {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: .5rem;
     justify-content: space-between;
     border-radius: .5rem;
     overflow: hidden;
@@ -166,7 +166,6 @@
 }
 .ogp_body {
   display: flex;
-  padding: 1rem 0;
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 1rem;
@@ -178,12 +177,14 @@
   font-size: calc((112.5% + 0.25vw) * 0.7);
   font-family: sans-serif;
   font-weight: 700;
+  margin-top: .5rem;
 }
 
 .ogp_url {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+  margin-bottom: .5rem;
   color: #979797;
   font-size: calc((112.5% + 0.25vw) * 0.7);
 }
@@ -202,6 +203,7 @@
     object-fit: contain;
     height: 100%;
     object-position: center;
+
   }
 }
 

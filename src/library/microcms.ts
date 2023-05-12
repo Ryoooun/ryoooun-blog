@@ -112,7 +112,7 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
     })
     if($('html').find('a').attr('href')){
       //@ts-ignore
-      $('a').each(async(_, elm) => {
+     $('a').each(async(_, elm) => {
         const url = $(elm).attr("href")
         const res = await fetch(url as string)
         const text = await res.text()
@@ -120,17 +120,26 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
         const image = $href('meta[property="og:image"]').attr('content')
         const desc = $href('meta[property="og:description"]').attr('content')
         const title = $href('meta[property="og:title"]').attr('content')
-        $(elm).html(`<div class="${styles.ogp_card} shadow-xl">
-        <div class="${styles.ogp_body}">
-          <p class="${styles.ogp_desc}">
-            <span>${title ?? ""}</span>
-          </p>
-          <p class=${styles.ogp_url}><img src="http://www.google.com/s2/favicons?domain=${url}" alt="favicon" /><span>${url?.split("//")[1].split("/")[0] ?? ""}</span></p>
-        </div>
-        <div class="${styles.ogp_image}"><img src="${image ?? ''}" alt="${title ?? ""}" /></div>
+        $(elm).wrapAll(`
+        <div class="${styles.ogp_card} shadow-xl">
         </div>`)
-        resolve($.html())
+      $(elm).html(`
+        <div class="${styles.ogp_body}">
+        <p class="${styles.ogp_desc}">
+        <span>${title ?? ""}</span>
+      </p>
+      <p class=${styles.ogp_url}><img src="http://www.google.com/s2/favicons?domain=${url}" alt="favicon" /><span>${url?.split("//")[1].split("/")[0] ?? ""}</span></p>
+  </div>
+    <div class="${styles.ogp_image}">
+      <img src="${image ?? ''}" alt="${title ?? ""}" class="shadow-2xl" />
+    </div>
+        `)
+
+        if(_ === 0){
+          resolve($.html())
+        }
       })
+
     } else {
       resolve($.html())
     }
