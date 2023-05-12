@@ -107,7 +107,9 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
       $(elm).wrap('<div class="w-full flex justify-center"></div>')
       $(elm).addClass(`rounded-xl shadow-lg sm:max-w-2xl`)
     })
-
+    $('p').each((_, elm) => {
+      $(elm).addClass(`${styles.paragraph}`)
+    })
     if($('html').find('a').attr('href')){
       //@ts-ignore
       $('a').each(async(_, elm) => {

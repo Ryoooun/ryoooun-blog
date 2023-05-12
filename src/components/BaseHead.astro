@@ -8,15 +8,20 @@ export interface Props {
 
 // const cononicalURL = new URL(Astro.url.pathname, Astro.site);
 const cononicalURL = "https://ryoooun-blog-ryoooun.vercel.app/";
-const { title, description } = Astro.props;
+const ogpImageURL = new URL('/main_ogp.svg', cononicalURL)
+
+const { title, description, ogp } = Astro.props;
 ---
+
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="/favicon.ico" />
 <meta name="ganerator" content={Astro.generator} />
-
+<meta property="og:image" content={ogp ? ogp : ogpImageURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description}>
 <!-- Canonical URL -->
 <link rel="canonical" href={cononicalURL} />
 
