@@ -1,7 +1,7 @@
 import { createClient, MicroCMSContentId, MicroCMSDate, MicroCMSQueries } from "microcms-js-sdk";
 import styles from '../styles/blogstyle.module.scss'
 import {load} from 'cheerio'
-import hljs from 'highlight.js'
+import hljs from 'highlight.js';
 import { string } from "astro/zod";
 
 
@@ -106,25 +106,30 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
     $('img').each((_, elm) => {
       $(elm).addClass(`${styles.img}`)
     })
-    //@ts-ignore
-    $('a').each(async(_, elm) => {
-      const url = $(elm).attr("href")
-      const res = await fetch(url as string)
-      const text = await res.text()
-      const $href = load(text)
-      const image = $href('meta[property="og:image"]').attr('content')
-      const desc = $href('meta[property="og:description"]').attr('content')
-      const title = $href('meta[property="og:title"]').attr('content')
-      $(elm).html(`<div class="${styles.ogp_card} shadow-lg">
-      <div class="${styles.ogp_body}">
-        <p class="${styles.ogp_desc}">
-          <span>${title ?? ""}</span>
-        </p>
-        <p class=${styles.ogp_url}><img src="http://www.google.com/s2/favicons?domain=${url}" alt="favicon" /><span>${url?.split("//")[1].split("/")[0] ?? ""}</span></p>
-      </div>
-      <div class="${styles.ogp_image}"><img src="${image ?? ''}" alt="${title ?? ""}" /></div>
-      </div>`)
+
+    if($('html').find('a').attr('href')){
+      //@ts-ignore
+      $('a').each(async(_, elm) => {
+        const url = $(elm).attr("href")
+        const res = await fetch(url as string)
+        const text = await res.text()
+        const $href = load(text)
+        const image = $href('meta[property="og:image"]').attr('content')
+        const desc = $href('meta[property="og:description"]').attr('content')
+        const title = $href('meta[property="og:title"]').attr('content')
+        $(elm).html(`<div class="${styles.ogp_card} shadow-lg">
+        <div class="${styles.ogp_body}">
+          <p class="${styles.ogp_desc}">
+            <span>${title ?? ""}</span>
+          </p>
+          <p class=${styles.ogp_url}><img src="http://www.google.com/s2/favicons?domain=${url}" alt="favicon" /><span>${url?.split("//")[1].split("/")[0] ?? ""}</span></p>
+        </div>
+        <div class="${styles.ogp_image}"><img src="${image ?? ''}" alt="${title ?? ""}" /></div>
+        </div>`)
+        resolve($.html())
+      })
+    } else {
       resolve($.html())
-    })
+    }
 })
 }
