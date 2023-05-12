@@ -65,10 +65,14 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
   // @ts-ignore
   return new Promise((resolve) => {
     $("pre code").each((_, elm) => {
-      const result = hljs.highlightAuto($(elm).text())
+      const filename = $(elm).text().split("\n",1)[0]
+      const code = $(elm).text().replace(filename,"").trim()
+      const result = hljs.highlightAuto(code)
+      console.log(result)
       $(elm).html(result.value)
-      $(elm).addClass("javascript hljs")
+      $(elm).addClass(`hljs ${styles.code}`)
       $(elm).css('border-radius', '0.5rem')
+      $(elm).before(`<span class="${styles.code_filename}">${filename.replace(':','')}</span>`)
     })
     $("h1").each((_, elm) => {
       $(elm).addClass(`${styles.heading1}`)
@@ -121,7 +125,7 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
         const desc = $href('meta[property="og:description"]').attr('content')
         const title = $href('meta[property="og:title"]').attr('content')
         $(elm).wrapAll(`
-        <div class="${styles.ogp_card} shadow-xl">
+        <div class="${styles.ogp_card} shadow-md">
         </div>`)
       $(elm).html(`
         <div class="${styles.ogp_body}">

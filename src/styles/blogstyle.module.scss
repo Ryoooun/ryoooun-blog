@@ -210,3 +210,12 @@
 .img {
 border-radius: .5rem;
 }
+
+.code_filename {
+  position: relative;
+  background-color: #282c34;
+  color: #dddddd;
+  padding: .25rem;
+  left: .5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
