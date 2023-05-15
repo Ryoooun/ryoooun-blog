@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Breadcrumbs from '../components/util/atoms/Breadcrumb.astro'
+import styles from '../styles/blogstyle.module.scss'
+
+const url = "https://sublim-ryoooun.vercel.app/"
 ---
 
 <BaseLayout title="SUBLIM" desc="トレンドの記事から重要っぽそうな単語を抜き出して学習を進めるアプリ">
@@ -20,7 +23,98 @@ import Breadcrumbs from '../components/util/atoms/Breadcrumb.astro'
     <div class="w-full flex justify-center"><img src="img/sublim.jpg" alt="SUBLIM" class="rounded-xl shadow-lg sm:max-w-2xl"/></div>
     <hr class="my-4"/>
     <main>
-      <h2>このアプリについて</h2>
+      <h2 class={styles.heading2}>アプリについて</h2>
+      <div class=`${styles.ogp_card} shadow-md` >
+        <a href={url}>
+          <div class={styles.ogp_body}>
+            <p class={styles.ogp_desc}>
+            <span>SUBLIM</span>
+            </p>
+            <p class={styles.ogp_url}><img src=`http://www.google.com/s2/favicons?domain=${url}` alt="favicon" />
+              <span>{url?.split("//")[1].split("/")[0] ?? ""}</span>
+            </p>
+          </div>
+          <div class={styles.ogp_image}>
+            <img src="/img/sublim.jpg" alt="SUBLIM" class="shadow-2xl max-h-28" />
+          </div>
+        </a>
+      </div>
+      <h3 class={styles.heading3}>概要と経緯</h3>
+      <p class={styles.paragraph}>
+       人間が知識を得ること、またそれを論理的に構造化して他者と共有するためには言語化の能力が欠かせません。
+       特に学習の初心者ほど自身の学習をコーディングや制作活動以外で表現することは難しいこともあります。
+       このアプリは言語化の能力を高めるために、語彙と見聞を広げることにフォーカスし、初学者のより良い学習を助けることを目標に開発をしました。
+       自分自身の課題が開発の原点ですが、周りの初学者の意見を聞いていても改めて言語化能力について課題意識を感じている人が多く、それを
+       解決するにはどうしたら良いかという軸で初めてポートフォリオとして制作しました。
+      </p>
+      <h3 class={styles.heading3}>サービスと機能</h3>
+      <ul class={styles.unordered_list}>
+        <li>QiitaとZennのトレンドの記事から「重要っぽい」ワードを抽出。</li>
+        <li>気になったワードはすぐにブックマークして、マークダウンで後から学習。</li>
+        <li>指定したURLの本文を解析し、「重要っぽい」ワードをクラウドマップ出力。</li>
+      </ul>
+      <p class={styles.paragraph}>以上の機能を現在、実装しています。また今後学習を深めて、</p>
+      <ul class={styles.unordered_list}>
+        <li>ユーザーに対して、他のユーザーの学習した内容を元にした学習単語の提案機能</li>
+        <li>他のユーザーとの緩やかな交流機能</li>
+      </ul>
+      <p class={styles.paragraph}>といったような機能を実装できればと考えています。</p>
+      <h2 class={styles.heading2}>画面遷移と設計</h2>
+      <img src="img/monitor.webp" alt="画面遷移図" class={styles.img}>
+      <p class={styles.paragraph}>今回使用したのは以下の技術およびサービスです。</p>
+      <ul class={styles.unordered_list}>
+        <li>UIライブラリ<span class="font-bold text-red-500 bg-gray-300 ml-4">React.js</span></li>
+        <li>フロントエンドフレームワーク<span class="font-bold text-red-500 bg-gray-300 ml-4">Next.js</span></li>
+        <li>状態管理ライブラリ<span class="font-bold text-red-500 bg-gray-300 ml-4">zustand</span></li>
+        <li>認証機能<span class="font-bold text-red-500 bg-gray-300 ml-4">Firebase</span></li>
+        <li>データベース機能<span class="font-bold text-red-500 bg-gray-300 ml-4">Firestore</span></li>
+        <li>ホスティング<span class="font-bold text-red-500 bg-gray-300 ml-4">Vercel</span></li>
+        <li>スタイリング・アニメーション
+          <span class="font-bold text-red-500 bg-gray-300 ml-4">Emotion</span>
+          <span class="font-bold text-red-500 bg-gray-300 ml-4">Framer-motion</span>
+          <span class="font-bold text-red-500 bg-gray-300 ml-4">ChakraUI</span>
+        </li>
+      </ul>
+      <img class={styles.img} src="img/service.webp" alt="使用技術・サービス">
+      <p class={styles.paragraph}>SPAの構築を学習していたためコンポーネント・ルーティングにはReact.jsおよびNext.jsを選択しました。
+      またホスティングサービスはNext.jsの開発元であるVercelを利用しており、Next.jsのVer13で追加されたAPPディレクトリ構成です。
+    認証機能とデータベースにはFirebase/FirestoreのSDK V9を使用しました。</p>
+    <p class={styles.paragraph}>また、トレンドの記事の取得はそれぞれAPIを介して取得しています。</p>
+    <h2 class={styles.heading2}>各画面の詳細と工夫した点</h2>
+    <h3 class={styles.heading3}>ダッシュボード</h3>
+    <p class={styles.paragraph}>この画面は学習活動を管理するダッシュボードです。データベースから学習活動を読み取りグラフに表示しています。
+      もっとゲーミフィケーションを意識したモチベーションを高めるUIを構想しており、ありきたりですがトロフィーや学習領域のグラフ化なども良いかと思っています。
+    </p>
+    <h3 class={styles.heading3}>トレンド探索</h3>
+    <p class={styles.paragraph}>
+      この画面はQiitaとZennからトレンドになっている記事を取得し表示しており、今流行っている内容や話題になっているトピックについてざっくり知ることができるイメージで作りました。
+      自分自身が学習していてブックマークが増えすぎて管理できず、後で読もうが積み重なった結果、ブックマークがなかなかカオスな状況になることがあったため、どうにか工夫できないのかと
+      考え、学習の最小単位である単語の状態で記録・管理できれば後からでも一覧として学習を進めやすいのではないかと思いました。記事から外部リンクとして記事を見ることができ、
+      このアプリのコアな部分である「重要っぽそうな」ワードを抽出してこのページから登録することもできるようにしました。
+      「重要っぽそうな」ワードの抽出には、形態素解析を行う「kuromoji.js」と日本語専門用語抽出ライブラリの「termextact-kuromojijs」を使用しており、流れとしては、
+    </p>
+      <ol class={styles.ordered_list}>
+        <li>cheerioでリンク先の記事をパースし本文の取得する</li>
+        <li>本文をkuromojiで形態素解析する</li>
+        <li>形態素解析されたデータをtermextact-kuromojijsで重要度を評価する</li>
+        <li>表示用にデータを整形し、Reactkコンポーネントに渡す</li>
+      </ol>
+      <p class={styles.paragraph}>となっています。辞書データの兼ね合いから、Next.jsのAPIルートの機能でAPIとして記事データをやりとりさせています。
+      抽出部分を調整し、より学習に繋がりやすい単語を抽出するようにしましたが、ここはまだまだ工夫が要される部分かなと感じています。</p>
+      <h3 class={styles.heading3}>エディタ機能</h3>
+      <p class={styles.paragraph}>「Notionでいいじゃん」と言われればその通りなのですが、メモ帳くらいの感覚でラフに単語をメモしたいと思っていたため、
+      React.jsでマークダウンエディタを実装しました。使用したのは「react-markdown」で、プラグインとして「remark-gfm」を導入し、マークダウン記法を拡張しています。
+      また、ChakraUIの要素に変換するようにcomponentsオプションでそれぞれの変換先要素を指定しているのが工夫しているところです。
+      データベースであるFirestoreを初めて使用したのですが、ドキュメント型データベースのコレクション、ドキュメント、フィールドの設計になれず、開発中にもかかわらず検証などを回しているとあっという間に無料枠を脅かすほどの読み込み回数をマークしてしまいました。
+      改めてデータベースの構造を変更し、読み込み時には参照を保持した１つのオブジェクトだけを読み込み、直接データへアクセスするようにすることで、劇的に読み込み回数を減らすことができました。（元が無計画だったともいう）
+      SQLiteの使用経験しかなかったので、改めてNoSQLについて学習しようと思いました。
+    </p>
+    <h3 class={styles.heading3}>ワードクラウド出力</h3>
+    <p class={styles.paragraph}>自身がワードクラウドが好きというのと、いつか学習した内容をクラウド管理できたり、クラウドをシェアして学習を広げられたら素敵やん。という思いで追加した、現状おまけ感のある機能です。
+    ここにもkuromojiを利用して形態素解析を行なっており、URLに指定したページの本文のみを抜き出してリソースにしています。クラウドでデータをやりとりするのは、雲と雨をイメージしています。
+    余談ですが、アプリの名前である『SUBLIM』は、状態変化の昇華を意味する「sublimation」から来ています。言葉という雨が初心者の知識に恵みを与えて、それがやがて雲となって共有されていく。というポエミーさ全開のコンセプトがあります。
+    <h2 class={styles.heading2}>経験と感想</h2>
+
     </main>
   </section>
 </BaseLayout>
