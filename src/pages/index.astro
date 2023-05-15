@@ -1,11 +1,10 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
+import PortfolioCard from './portfolio/PortfolioCard.astro'
 import ProjectCardList from "../components/ProjectCardList.astro";
 import Heading2 from "../components/util/atoms/Heading2.astro";
-import Introduce from '../components/util/organisms/Introduce.astro'
+import Introduce from '../components/util/organisms/Introduce.astro';
 
-import BaseLayout from '../layouts/BaseLayout.astro'
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 import { SITE } from "../config";
 
@@ -19,7 +18,7 @@ const { contents: posts } = await getBlogs({
   <main class="mx-6 sm:mx-10">
     <Introduce />
     <Heading2>制作しているもの</Heading2>
-    <ProjectCardList />
+      <PortfolioCard />
     <Heading2>最近の記事</Heading2>
     <a class="block w-full text-right font-bold text-gray-500 hover:text-blue-500 transition-all duration-500" href="/blog">記事一覧</a>
     <ProjectCardList />

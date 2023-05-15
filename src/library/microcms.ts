@@ -68,9 +68,6 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
       const code = $(elm).text().replace(filename,"").trim()
       const result = hljs.highlightAuto(code)
       const test = result.value.split(/\n/)
-      test.map((value, index) => {
-        console.log(value)
-      })
       $(elm).html(result.value)
       $(elm).addClass(`hljs ${styles.code}`)
       $(elm).css('border-radius', '0.5rem')
