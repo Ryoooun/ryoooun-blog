@@ -19,176 +19,177 @@ const diffMonth: DiffMonth = (d1, d2) => {
 ---
 
 <BaseLayout>
-  <h2>自己紹介</h2>
-  <p>
-    はじめまして、私はYamashita Ryosukeと申します。<br
-    />私はIT業界への転職を目標に活動をしています。
-  </p>
-  <p>
-    多くのユーザーに利便性や楽しみを与えることのできるWebアプリケーションの開発に携わりたいという思いがあり、かねてより興味のあったIT業界での就職を決意しました。
-  </p>
-  <p>
-    現在はフロントエンドの学習をしており、このブログもその学習の遊び場として開設するに至りました。
-  </p>
-  <h3>自身を表す言葉</h3>
-  <p>
-    仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/見た目はクール、中身はホット/
-    縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派
-  </p>
-  <h2>保有スキルと経験(Not 実務)</h2>
-  <ul class="skill_wrapper">
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="img/html5.webp" alt="HTML5" />
-      </div>
-      <div class="skill_text">
-        <h3>HTML</h3><span
-          >学習歴{diffMonth(new Date("2023-1-01"), nowMonth)}ヶ月</span
-        >
-        <p>デザインカンプをもとに簡単な静的Webページの制作ができます。</p>
-        <p>Semantic HTMLやWAI-ARIAを意識したコーディングを心掛けています。</p>
-        <p>
-          このページのデザインはツッコミどころ満載ですが、Reactなどのライブラリ・フレームワークを使用したコンポーネントのコーディングも行っています。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/css3.webp" alt="CSS3" />
-      </div>
-      <div class="skill_text">
-        <h3>CSS</h3><span
-          >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          CSSの基本的なプロパティが理解でき、ドキュメントなどを参考にコーディングすることができます。
-        </p>
-        <p>
-          CSSメタ言語としてSCSSを利用しています。フレームワークでは、TailwindCSS/Bootstrap/Bulmaは使用できます。
-        </p>
-        <p>このブログも早くオシャレにしたいです。</p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/javascript.webp" alt="JavaScript" />
-      </div>
-      <div class="skill_text">
-        <h3>JavaScript</h3><span
-          >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          ページのイベントに対する動的な処理が記述できます。非同期処理や各WebAPIを利用した機能の実装。
-          ライブラリのドキュメントを読みながら、自分のコードに適用していくことができるレベルです。
-        </p>
-
-        <p>Node.jsについても鋭意学習中</p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/typescript.webp" alt="TypeScript" />
-      </div>
-      <div class="skill_text">
-        <h3>TypeScript</h3><span
-          >学習歴{diffMonth(new Date("2023-03-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          入門書やドキュメントを読みながら、自分が書いたJSのコードをリファクタリングできるレベルです。
-        </p>
-        <p>
-          今後自分でコーディングする上ではJavaScriptではなく、こちらをメインにしていきたい位には、恩恵を体感しています。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/python.webp" alt="Python" />
-      </div>
-      <div class="skill_text">
-        <h3>Python</h3><span
-          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          前職では、Webスクレイピングによるデータ収集と分析、ちょっとした業務の自動化（メール自動送信やエクセル・PDF処理）などに使用してました。
-        </p>
-        <p>
-          現在はFlaskを使用してWebアプリケーションのバックエンドの基本を学習しています。今後は機械学習やAIの領域も齧っていきたいです。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/react.webp" alt="React" />
-      </div>
-      <div class="skill_text">
-        <h3>React</h3><span
-          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          組み込みフックやカスタムフックを利用したコンポーネントの実装ができます。状態管理ではzustandを、非同期処理にはSWR、UIにはChakraUI、Framer-motionを使用できます。
-        </p>
-        <p>
-          Atomic
-          Designを意識した粒度の設定、データと見た目の疎結合を意識したコンポーネントの設計と実装を心がけています。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/nextjs.webp" alt="Next.js" />
-      </div>
-      <div class="skill_text">
-        <h3>Next.js</h3><span
-          >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          ルーティングや動的パスからのページの生成、CSR・SSR・SSG・ISRのそれぞれのパフォーマンスの理解。Appディレクトリでのアプリケーション開発。Vercelへのデプロイまで行うことができます。
-        </p>
-        <p>
-          現在制作しているWebアプリケーションもこの環境にデプロイされています。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/firebase.webp" alt="Firebase" />
-      </div>
-      <div class="skill_text">
-        <h3>Firebase</h3><span
-          >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          JavaScript
-          SDKを自作Webアプリケーションに組み込み、認証機能とFirestoreによるデータベース機能の実装に使用しました。
-        </p>
-        <p>
-          セキュリティについてはまだまだ課題ですが、ドキュメント型データベースの最適化を通してNoSQLへの理解が深まりました。
-        </p>
-      </div>
-    </li>
-    <li class="skill_card">
-      <div class="logo_wrapper">
-        <img class="skill_logo" src="/img/astro.webp" alt="Astro" />
-      </div>
-      <div class="skill_text">
-        <h3>Astro</h3><span
-          >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
-        >
-        <p>
-          このブログはAstroで開発されています。記事はmicroCMSから取得しており、microCMSに記事投稿→デプロイフックが発火しvercelに通知→vercelがfetchした内容でSSGして再デプロイしています。ヘッドレスCMS便利。
-        </p>
-      </div>
-    </li>
-  </ul>
-  <h2>other</h2>
-  <p>
-    他の経験としては、
-    <br />
-    家業で使用していたN88Basic言語で作られたソフトウェアをElectronでモダンなアプリケーションに作り直しことがあります。紙印刷の数千行のコードを読んでのは今でもいい思い出で、根気よくソースを読むことの大切さと自分の力で一つのコンテンツを作り上げることの楽しさを学びました。
-    <br />
-    また、このブログで使用されている可愛いボクセルアートも制作しています。今後はボクセルをWebGLとしてWebに活かせられれば楽しいだろうなと研究しています。Three.jsも触っていきたい所存です。
-  </p>
+  <main class="mx-4 sm:mx-40">
+    <h2>自己紹介</h2>
+    <p>
+      はじめまして、私はYamashita Ryosukeと申します。<br
+      />私はIT業界への転職を目標に活動をしています。
+    </p>
+    <p>
+      多くのユーザーに利便性や楽しみを与えることのできるWebアプリケーションの開発に携わりたいという思いがあり、かねてより興味のあったIT業界での就職を決意しました。
+    </p>
+    <p>
+      現在はフロントエンドの学習をしており、このブログもその学習の遊び場として開設するに至りました。
+    </p>
+    <h3>自身を表す言葉</h3>
+    <p>
+      仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/見た目はクール、中身はホット/
+      縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派
+    </p>
+    <h2>保有スキルと経験(Not 実務)</h2>
+    <ul class="skill_wrapper">
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="img/html5.webp" alt="HTML5" />
+        </div>
+        <div class="skill_text">
+          <h3>HTML</h3><span
+            >学習歴{diffMonth(new Date("2023-1-01"), nowMonth)}ヶ月</span
+          >
+          <p>デザインカンプをもとに簡単な静的Webページの制作ができます。</p>
+          <p>Semantic HTMLやWAI-ARIAを意識したコーディングを心掛けています。</p>
+          <p>
+            このページのデザインはツッコミどころ満載ですが、Reactなどのライブラリ・フレームワークを使用したコンポーネントのコーディングも行っています。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/css3.webp" alt="CSS3" />
+        </div>
+        <div class="skill_text">
+          <h3>CSS</h3><span
+            >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            CSSの基本的なプロパティが理解でき、ドキュメントなどを参考にコーディングすることができます。
+          </p>
+          <p>
+            CSSメタ言語としてSCSSを利用しています。フレームワークでは、TailwindCSS/Bootstrap/Bulmaは使用できます。
+          </p>
+          <p>このブログも早くオシャレにしたいです。</p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/javascript.webp" alt="JavaScript" />
+        </div>
+        <div class="skill_text">
+          <h3>JavaScript</h3><span
+            >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            ページのイベントに対する動的な処理が記述できます。非同期処理や各WebAPIを利用した機能の実装。
+            ライブラリのドキュメントを読みながら、自分のコードに適用していくことができるレベルです。
+          </p>
+          <p>Node.jsについても鋭意学習中</p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/typescript.webp" alt="TypeScript" />
+        </div>
+        <div class="skill_text">
+          <h3>TypeScript</h3><span
+            >学習歴{diffMonth(new Date("2023-03-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            入門書やドキュメントを読みながら、自分が書いたJSのコードをリファクタリングできるレベルです。
+          </p>
+          <p>
+            今後自分でコーディングする上ではJavaScriptではなく、こちらをメインにしていきたい位には、恩恵を体感しています。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/python.webp" alt="Python" />
+        </div>
+        <div class="skill_text">
+          <h3>Python</h3><span
+            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            前職では、Webスクレイピングによるデータ収集と分析、ちょっとした業務の自動化（メール自動送信やエクセル・PDF処理）などに使用してました。
+          </p>
+          <p>
+            現在はFlaskを使用してWebアプリケーションのバックエンドの基本を学習しています。今後は機械学習やAIの領域も齧っていきたいです。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/react.webp" alt="React" />
+        </div>
+        <div class="skill_text">
+          <h3>React</h3><span
+            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            組み込みフックやカスタムフックを利用したコンポーネントの実装ができます。状態管理ではzustandを、非同期処理にはSWR、UIにはChakraUI、Framer-motionを使用できます。
+          </p>
+          <p>
+            Atomic
+            Designを意識した粒度の設定、データと見た目の疎結合を意識したコンポーネントの設計と実装を心がけています。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/nextjs.webp" alt="Next.js" />
+        </div>
+        <div class="skill_text">
+          <h3>Next.js</h3><span
+            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            ルーティングや動的パスからのページの生成、CSR・SSR・SSG・ISRのそれぞれのパフォーマンスの理解。Appディレクトリでのアプリケーション開発。Vercelへのデプロイまで行うことができます。
+          </p>
+          <p>
+            現在制作しているWebアプリケーションもこの環境にデプロイされています。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/firebase.webp" alt="Firebase" />
+        </div>
+        <div class="skill_text">
+          <h3>Firebase</h3><span
+            >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            JavaScript
+            SDKを自作Webアプリケーションに組み込み、認証機能とFirestoreによるデータベース機能の実装に使用しました。
+          </p>
+          <p>
+            セキュリティについてはまだまだ課題ですが、ドキュメント型データベースの最適化を通してNoSQLへの理解が深まりました。
+          </p>
+        </div>
+      </li>
+      <li class="skill_card">
+        <div class="logo_wrapper">
+          <img class="skill_logo" src="/img/astro.webp" alt="Astro" />
+        </div>
+        <div class="skill_text">
+          <h3>Astro</h3><span
+            >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
+          >
+          <p>
+            このブログはAstroで開発されています。記事はmicroCMSから取得しており、microCMSに記事投稿→デプロイフックが発火しvercelに通知→vercelがfetchした内容でSSGして再デプロイしています。ヘッドレスCMS便利。
+          </p>
+        </div>
+      </li>
+    </ul>
+    <h2>other</h2>
+    <p>
+      他の経験としては、
+      <br />
+      家業で使用していたN88Basic言語で作られたソフトウェアをElectronでモダンなアプリケーションに作り直しことがあります。紙印刷の数千行のコードを読んでのは今でもいい思い出で、根気よくソースを読むことの大切さと自分の力で一つのコンテンツを作り上げることの楽しさを学びました。
+      <br />
+      また、このブログで使用されている可愛いボクセルアートも制作しています。今後はボクセルをWebGLとしてWebに活かせられれば楽しいだろうなと研究しています。Three.jsも触っていきたい所存です。
+    </p>
+  </main>
 </BaseLayout>
 <style lang="scss">
   $mq-breakpoints: (
