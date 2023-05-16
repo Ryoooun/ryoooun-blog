@@ -73,6 +73,10 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
       $(elm).css('border-radius', '0.5rem')
       $(elm).before(`<span class="${styles.code_filename}">${filename.replace(':','')}</span>`)
     })
+    $("iframe").each((_, elm) => {
+      $(elm).removeAttr('width')
+      $(elm).css("width", "100%")
+    })
     $("h1").each((_, elm) => {
       $(elm).addClass(`${styles.heading1}`)
     })
