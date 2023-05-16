@@ -1,7 +1,16 @@
 ---
 const today = new Date();
+const url = Astro.url.href
+const twitterId = "ryoooun214"
+const {title} = Astro.props
 ---
-
+<hr class="mx-8">
+<div class="text-center mx-8 text-sm">
+  記事がためになったら、シェアしてもらえるとテンションが上がります。
+  <a href=`https://twitter.com/share?url=${url}&via=${twitterId}&related=${twitterId}&text=${title}` rel="nofollow noopener" target="_blank"
+  ><img src="/icon/twitter.svg" alt="twitter" class="w-10 sm:w-12">
+</a>
+</div>
 <footer class="p-6 text-center">
   <p>
     &copy; {today.getFullYear()} Ryosuke Yamashita.

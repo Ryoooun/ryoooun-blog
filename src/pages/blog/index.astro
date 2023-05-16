@@ -13,16 +13,12 @@ const { contents: posts } = await getBlogs({
 });
 
 const crumbs = Astro.url.pathname
+
 ---
 
-<BaseLayout title={SITE.title} descritpion={SITE.desc}>
+<BaseLayout title={SITE.title} descritpion={SITE.desc} >
   <section class="mx-6 sm:mx-10">
     <Breadcrumb />
     <PostCardList />
   </section>
 </BaseLayout>
-<style lang="scss" scoped>
-  .embedly-embed {
-    widows: 100%;
-  }
-</style>

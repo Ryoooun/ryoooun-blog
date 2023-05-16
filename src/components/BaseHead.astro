@@ -12,6 +12,7 @@ const cononicalURL = "https://komogomo.vercel.app/";
 const ogpImageURL = new URL('/main_ogp.svg', cononicalURL)
 
 const { title, description, ogp } = Astro.props;
+const url = Astro.url.href
 ---
 
 
@@ -21,8 +22,16 @@ const { title, description, ogp } = Astro.props;
 <link rel="icon" href="/favicon.ico" />
 <meta name="ganerator" content={Astro.generator} />
 <meta property="og:image" content={ogp ? ogp : ogpImageURL} />
-<meta property="og:title" content=`${title}ー未経験が目指すWeb系プログラマーへの雑記` />
+<meta property="og:title" content=`${title} 未経験が目指すWeb系プログラマーへの雑記` />
+<meta property="og:url" content={url}>
 <meta property="og:description" content={description}>
+<meta property="og:type" content="blog">
+<meta property="og:site_name" content="komogomo 未経験が目指すWeb系プログラマーへの雑記">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ryoooun214">
+<meta name="twitter:image" content={ogp}>
 <!-- Canonical URL -->
 <link rel="canonical" href={cononicalURL} />
 

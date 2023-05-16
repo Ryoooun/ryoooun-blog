@@ -6,7 +6,7 @@ import styles from '../styles/blogstyle.module.scss'
 const url = "https://komogomo.vercel.app/"
 ---
 
-<BaseLayout title="SUBLIM" desc="トレンドの記事から重要っぽそうな単語を抜き出して学習を進めるアプリ">
+<BaseLayout title="SUBLIM" desc="トレンドの記事から重要っぽそうな単語を抜き出して学習を進めるアプリ" ogp={new URL("/img/sublim.jpg", url)}>
   <section class="mx-4 sm:mx-10">
     <Breadcrumbs placeholder="SUBLIM" />
     <h1 class="text-3xl mb-4">SUBLIM -トレンド記事から単語学習を進めるアプリ-</h1>
@@ -35,7 +35,7 @@ const url = "https://komogomo.vercel.app/"
             </p>
           </div>
           <div class={styles.ogp_image}>
-            <img src="/img/sublim.jpg" alt="SUBLIM" class="shadow-2xl max-h-28" />
+            <img src="img/sublim.jpg" alt="SUBLIM" class="shadow-2xl max-h-28" />
           </div>
         </a>
       </div>

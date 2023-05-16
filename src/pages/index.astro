@@ -12,6 +12,7 @@ import { getBlogs } from "../library/microcms";
 const { contents: posts } = await getBlogs({
   fields: ["id", "title", "publishedAt"],
 });
+
 ---
 
 <BaseLayout title={SITE.title} description={SITE.desc}>
