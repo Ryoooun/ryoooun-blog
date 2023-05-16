@@ -20,12 +20,12 @@ const { contents: posts } = await getBlogs({
                 alt={post.title}
               />
 
-            <div class="h-full p-4 bg-gradient-to-bl from-indigo-500 via-purple-500 to-pink-500 flex flex-col">
-              <h3 class="text-white text-lg font-bold tracking-wider mb-6">
+            <div class="h-full p-4 flex flex-col">
+              <h3 class="text-gray-600 text-lg font-bold tracking-wider mb-6">
                 {post.title}
               </h3>
               <a
-                class="text-white p-1 text-lg uppercase text-center rounded-md font-normal block w-full cursor-pointer border boder-white border-opacity-5  hover:opacity-60 transition-all duration-200 mt-auto"
+                class="text-gray-600 p-1 text-lg uppercase text-center rounded-md font-normal block w-full cursor-pointer border boder-white border-opacity-5  hover:opacity-60 transition-all duration-200 mt-auto"
                 href={`/blog/${post.id}`}>
                 Read more
               </a>
