@@ -1,0 +1,158 @@
+---
+import styles from '../../../styles/aboutstyle.module.scss'
+
+const nowMonth = new Date();
+type DiffMonth = (d1: Date, d2: Date) => Number;
+/**
+ * Caluculate the month difference of a period.
+ * @param {Date} d1 - Difference start date.
+ * @param {Date} d2 - Difference end date.
+ * @return {number} diff - diff month.
+ */
+const diffMonth: DiffMonth = (d1, d2) => {
+  let d1Month, d2Month;
+  d1Month = d1.getFullYear() * 12 + d1.getMonth();
+  d2Month = d2.getFullYear() * 12 + d2.getMonth();
+  return d2Month - d1Month;
+};
+
+
+const skill_description = [
+  { name: "HTML",
+    description:
+      [ "基本的な要素を用いたWebサイトのセマンティックマークアップ",
+        "基本的な属性の理解",
+        "レスポンシブデザインへの対応",
+      ],
+    img: '/img/html5.webp',
+    from_date: "2023-1-01",
+    },
+    { name: "CSS",
+    description:
+      [ "基本的なプロパティを用いたWebサイトのスタイリング",
+        "メディアクエリ",
+        "レスポンシブデザインへの対応",
+        "SASSによるスタイリング",
+        "CSSフレームワークの使用（Bootstrap, TailwindCSS, Bulma)"
+      ],
+    img: '/img/css3.webp',
+    from_date: "2023-1-01",
+    },
+    { name: "JavaScript",
+    description:
+      [ "イベントハンドリング、非同期処理、APIの利用など基本的なコーディング",
+        "Three.jsやGSAPなどライブラリを利用したインタラクションデザイン",
+      ],
+    img: '/img/javascript.webp',
+    from_date: "2023-2-01",
+    },
+    { name: "TypeScript",
+    description:
+      [
+        "基本的な型の定義",
+        "型エイリアス、インターフェースによる型の定義",
+        "型安全性を考慮したコーディング"
+      ],
+    img: '/img/typescript.webp',
+    from_date: "2023-4-01",
+    },
+    { name: "Python",
+    description:
+      [
+        "ファイル操作など日常作業の自動化に利用",
+        "FlaskによるWebアプリケーションの学習",
+        "PyTorck,torchvisionを利用した初歩的な機械学習・ディープラーニングの学習",
+      ],
+    img: '/img/python.webp',
+    from_date: "2023-2-01",
+    },
+    { name: "React.js",
+    description:
+      [
+        "組み込みフック、カスタムフックの利用",
+        "ルーティング、遅延ローディングによる負荷分散",
+        "状態管理ライブラリの使用(zustand)",
+        "アトミックデザインを意識したコンポーネントの実装",
+        "CSSライブラリやアニメーションライブラリの使用"
+      ],
+    img: '/img/react.webp',
+    from_date: "2023-2-01",
+    },
+    { name: "Next.js",
+    description:
+      [
+        "CSR/SSR/SSG/ISRの理解とページ、コンポーネントの設計",
+        "Next.js組み込みモジュールを利用したページの最適化",
+      ],
+    img: '/img/nextjs.webp',
+    from_date: "2023-3-01",
+    },
+    { name: "Firebase",
+    description:
+      [
+        "SDKを使用した認証・データベース機能の実装",
+      ],
+    img: '/img/firebase.webp',
+    from_date: "2023-4-01",
+    },
+    { name: "Astro",
+    description:
+      [
+        "microCMSと連携させた静的Webサイトの構築",
+      ],
+    img: '/img/astro.webp',
+    from_date: "2023-5-01",
+    },
+]
+
+---
+
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-4" >
+  { skill_description.map((skill, index) => (
+    <li class="card-item relative">
+    <div>
+      <img src={skill.img} alt={skill.name} class="hover:opacity-75 transition-all duration-300 overflow-hidden rounded-lg shadow-sm"/>
+    </div>
+    <div class="opacity-0 scale-50 card-description absolute z-10 top-0 hover:backdrop-blur-xl h-full overflow-scroll transition-all duration-300 p-4 rounded-lg">
+      <h3 class="font-mono text-2xl font-bold text-gray-700">{skill.name}</h3><span class="text-sm text-gray-500">学習歴{diffMonth(new Date(skill.from_date), nowMonth)}ヶ月</span>
+      <div>
+        <ul>
+          {skill.description.map((desc, i) => (
+            <li class={styles.card_description}>{desc}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </li>
+  ))}
+</ul>
+<script>
+  const cardItems = document.querySelectorAll('.card-item')
+  cardItems?.forEach((item, index) => {
+    item?.addEventListener('click', () => {
+      const desc = item.querySelector('.card-description')
+      desc?.classList.toggle("opacity-0")
+      desc?.classList.toggle("scale-50")
+      desc?.classList.toggle("scale-100")
+    })
+    item?.addEventListener('mouseleave', () => {
+      const desc = item.querySelector('.card-description')
+      if(!desc?.classList.value.includes("opacity-0")) {
+        desc?.classList.toggle("opacity-0")
+        desc?.classList.toggle("scale-50")
+        desc?.classList.toggle("scale-100")
+      }
+    })
+    item?.addEventListener('mouseenter', () => {
+      const desc = item.querySelector('.card-description')
+      if(desc?.classList.value.includes("opacity-0")) {
+        desc?.classList.toggle("opacity-0")
+        desc?.classList.toggle("scale-50")
+        desc?.classList.toggle("scale-100")
+      }
+    })
+
+
+  })
+
+</script>

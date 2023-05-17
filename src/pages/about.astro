@@ -1,257 +1,38 @@
 ---
-import BasePost from "../layouts/BasePost.astro";
-import BaseLayout from '../layouts/BaseLayout.astro'
 
-const nowMonth = new Date();
-type DiffMonth = (d1: Date, d2: Date) => Number;
-/**
- * Caluculate the month difference of a period.
- * @param {Date} d1 - Difference start date.
- * @param {Date} d2 - Difference end date.
- * @return {number} diff - diff month.
- */
-const diffMonth: DiffMonth = (d1, d2) => {
-  let d1Month, d2Month;
-  d1Month = d1.getFullYear() * 12 + d1.getMonth();
-  d2Month = d2.getFullYear() * 12 + d2.getMonth();
-  return d2Month - d1Month;
-};
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Skillcard from '../components/util/organisms/Skillcard.astro'
+import styles from '../styles/aboutstyle.module.scss'
 ---
 
 <BaseLayout>
   <main class="mx-4 sm:mx-40">
-    <h2>自己紹介</h2>
-    <p>
-      はじめまして、私はYamashita Ryosukeと申します。<br
-      />私はIT業界への転職を目標に活動をしています。
+    <h2 class={styles.heading2}>自己紹介</h2>
+    <p class={styles.paragraph}>
+      はじめまして、私はYamashita Ryosukeと申します。現在、IT業界への転職を目標に活動をしています。
     </p>
-    <p>
-      多くのユーザーに利便性や楽しみを与えることのできるWebアプリケーションの開発に携わりたいという思いがあり、かねてより興味のあったIT業界での就職を決意しました。
+    <p class={styles.paragraph}>
+      多くのユーザーに利便性や楽しみを与えることのできるWebアプリケーションの開発に携わりたいという思いがあり、かねてより興味のあったIT業界のWebエンジニアへの就職を決意しました。
     </p>
-    <p>
+    <p class={styles.paragraph}>
       現在はフロントエンドの学習をしており、このブログもその学習の遊び場として開設するに至りました。
     </p>
-    <h3>自身を表す言葉</h3>
-    <p>
+    <h3 class={styles.heading3}>自身を表す言葉</h3>
+    <p class={styles.paragraph}>
       仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/見た目はクール、中身はホット/
       縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派
     </p>
-    <h2>保有スキルと経験(Not 実務)</h2>
-    <ul class="skill_wrapper">
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="img/html5.webp" alt="HTML5" />
-        </div>
-        <div class="skill_text">
-          <h3>HTML</h3><span
-            >学習歴{diffMonth(new Date("2023-1-01"), nowMonth)}ヶ月</span
-          >
-          <p>デザインカンプをもとに簡単な静的Webページの制作ができます。</p>
-          <p>Semantic HTMLやWAI-ARIAを意識したコーディングを心掛けています。</p>
-          <p>
-            このページのデザインはツッコミどころ満載ですが、Reactなどのライブラリ・フレームワークを使用したコンポーネントのコーディングも行っています。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/css3.webp" alt="CSS3" />
-        </div>
-        <div class="skill_text">
-          <h3>CSS</h3><span
-            >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            CSSの基本的なプロパティが理解でき、ドキュメントなどを参考にコーディングすることができます。
-          </p>
-          <p>
-            CSSメタ言語としてSCSSを利用しています。フレームワークでは、TailwindCSS/Bootstrap/Bulmaは使用できます。
-          </p>
-          <p>このブログも早くオシャレにしたいです。</p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/javascript.webp" alt="JavaScript" />
-        </div>
-        <div class="skill_text">
-          <h3>JavaScript</h3><span
-            >学習歴{diffMonth(new Date("2023-01-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            ページのイベントに対する動的な処理が記述できます。非同期処理や各WebAPIを利用した機能の実装。
-            ライブラリのドキュメントを読みながら、自分のコードに適用していくことができるレベルです。
-          </p>
-          <p>Node.jsについても鋭意学習中</p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/typescript.webp" alt="TypeScript" />
-        </div>
-        <div class="skill_text">
-          <h3>TypeScript</h3><span
-            >学習歴{diffMonth(new Date("2023-03-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            入門書やドキュメントを読みながら、自分が書いたJSのコードをリファクタリングできるレベルです。
-          </p>
-          <p>
-            今後自分でコーディングする上ではJavaScriptではなく、こちらをメインにしていきたい位には、恩恵を体感しています。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/python.webp" alt="Python" />
-        </div>
-        <div class="skill_text">
-          <h3>Python</h3><span
-            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            前職では、Webスクレイピングによるデータ収集と分析、ちょっとした業務の自動化（メール自動送信やエクセル・PDF処理）などに使用してました。
-          </p>
-          <p>
-            現在はFlaskを使用してWebアプリケーションのバックエンドの基本を学習しています。今後は機械学習やAIの領域も齧っていきたいです。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/react.webp" alt="React" />
-        </div>
-        <div class="skill_text">
-          <h3>React</h3><span
-            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            組み込みフックやカスタムフックを利用したコンポーネントの実装ができます。状態管理ではzustandを、非同期処理にはSWR、UIにはChakraUI、Framer-motionを使用できます。
-          </p>
-          <p>
-            Atomic
-            Designを意識した粒度の設定、データと見た目の疎結合を意識したコンポーネントの設計と実装を心がけています。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/nextjs.webp" alt="Next.js" />
-        </div>
-        <div class="skill_text">
-          <h3>Next.js</h3><span
-            >学習歴{diffMonth(new Date("2023-04-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            ルーティングや動的パスからのページの生成、CSR・SSR・SSG・ISRのそれぞれのパフォーマンスの理解。Appディレクトリでのアプリケーション開発。Vercelへのデプロイまで行うことができます。
-          </p>
-          <p>
-            現在制作しているWebアプリケーションもこの環境にデプロイされています。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/firebase.webp" alt="Firebase" />
-        </div>
-        <div class="skill_text">
-          <h3>Firebase</h3><span
-            >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            JavaScript
-            SDKを自作Webアプリケーションに組み込み、認証機能とFirestoreによるデータベース機能の実装に使用しました。
-          </p>
-          <p>
-            セキュリティについてはまだまだ課題ですが、ドキュメント型データベースの最適化を通してNoSQLへの理解が深まりました。
-          </p>
-        </div>
-      </li>
-      <li class="skill_card">
-        <div class="logo_wrapper">
-          <img class="skill_logo" src="/img/astro.webp" alt="Astro" />
-        </div>
-        <div class="skill_text">
-          <h3>Astro</h3><span
-            >学習歴{diffMonth(new Date("2023-05-01"), nowMonth)}ヶ月</span
-          >
-          <p>
-            このブログはAstroで開発されています。記事はmicroCMSから取得しており、microCMSに記事投稿→デプロイフックが発火しvercelに通知→vercelがfetchした内容でSSGして再デプロイしています。ヘッドレスCMS便利。
-          </p>
-        </div>
-      </li>
-    </ul>
-    <h2>other</h2>
-    <p>
-      他の経験としては、
-      <br />
-      家業で使用していたN88Basic言語で作られたソフトウェアをElectronでモダンなアプリケーションに作り直しことがあります。紙印刷の数千行のコードを読んでのは今でもいい思い出で、根気よくソースを読むことの大切さと自分の力で一つのコンテンツを作り上げることの楽しさを学びました。
-      <br />
-      また、このブログで使用されている可愛いボクセルアートも制作しています。今後はボクセルをWebGLとしてWebに活かせられれば楽しいだろうなと研究しています。Three.jsも触っていきたい所存です。
+    <h2 class={styles.heading2}>保有スキルと経験(Not 実務)</h2>
+      <Skillcard />
+    <h2 class={styles.heading2}>他の経験と特技・趣味</h2>
+    <p class={styles.paragraph}>
+      他の経験としては、N88Basicを使用したアプリケーションのElectronでの再開発や販売・営業の自作分析ツールの開発などが経験あります。
+      工夫して何を生み出す喜びややりがいはそういったところが原点かもしれません。
+    </p>
+    <p class={styles.paragraph}>
+      趣味は、ピクセルアート・ボクセルアート、料理、今はサボってますが筋トレも好きです。
+      特技は、弓道でインターハイ出場経験と地方大会での優勝経験があります。また一眼レフカメラでの写真撮影も得意で、小さなフォトコンテストで準優勝したのがささやかな自慢です。
     </p>
   </main>
 </BaseLayout>
-<style lang="scss">
-  $mq-breakpoints: (
-    xl: 1440px,
-    lg: 1280px,
-    md: 1024px,
-    tb: 768px,
-    sm: 576px,
-    xs: 414px,
-  ) !default;
 
-  @mixin mq($breakpoint: md, $rule: min, $subtraction: false) {
-    $breakpoint: map-get($mq-breakpoints, $breakpoint);
-
-    @if $rule==max and $subtraction {
-      $breakpoint: $breakpoint - 0.0625;
-    }
-
-    @media screen and (#{$rule}-width: $breakpoint) {
-      @content;
-    }
-  }
-  .skill_wrapper {
-    padding-left: 0;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-  }
-  .skill_card {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    border: 1px solid #a3a3a3;
-    border-radius: 0.5rem;
-    align-items: center;
-  }
-  .logo_wrapper {
-    height: clamp(160px, 25vw, 200px);
-    // background-color: #a3a3a3;
-  }
-  .skill_logo {
-    border-radius: 0.5rem 0 0 0.5rem;
-    object-fit: cover;
-    overflow: hidden;
-    // width: 100%;
-    aspect-ratio: 1 / 1;
-    height: 100%;
-  }
-  .skill_text {
-    /* height: clamp(100px, 25vw, 200px); */
-    font-size: clamp(10px, 2vw, 13px);
-    line-height: 1.2em;
-    & p {
-      padding: 0;
-      margin: 0;
-    }
-    & h3 {
-      padding: 0;
-      margin-bottom: 0.25rem;
-    }
-    & span {
-      font-size: clamp(8px, 1.5vw, 10px);
-    }
-  }
-</style>
