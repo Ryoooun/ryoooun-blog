@@ -13,9 +13,6 @@
   padding: 1rem .5rem;
   margin-bottom: 1rem;
   border-radius: .5rem;
-  background-image: -webkit-gradient(linear, right top, left top, from(#6366f1), to(#ec4899));
-  background-image: -webkit-linear-gradient(right, #6366f1 0%, #ec4899 100%);
-  background-image: linear-gradient(to left, #6366f1 0%, #ec4899 100%);
  }
 
 .heading2 {
@@ -32,9 +29,7 @@
   height: 6px;
   content: "";
   border-radius: 3px;
-  background-image: -webkit-gradient(linear, right top, left top, from(#6366f1), to(#ec4899));
-  background-image: -webkit-linear-gradient(right, #6366f1 0%, #ec4899 100%);
-  background-image: linear-gradient(to left, #6366f1 0%, #ec4899 100%);
+  background-color: #eeeeee;
  }
 }
 
@@ -52,9 +47,7 @@
     height: 80%;
     content: "";
     border-radius: 3px;
-    background-image: -webkit-gradient(linear, top, bottom, from(#6366f1), to(#ec4899));
-    background-image: -webkit-linear-gradient(bottom, #6366f1 0%, #ec4899 100%);
-    background-image: linear-gradient(to bottom, #6366f1 0%, #ec4899 100%);
+    background-color: #eeeeee;
   }
  }
 
@@ -115,7 +108,7 @@
     font-size: calc((112.5% + 0.25vw) * 0.9);
     &::marker {
       font-weight: 600;
-      color: #ec4899;
+      color: #464646;
       font-size: calc((112.5% + 0.25vw) * 0.9)
     }
   }
