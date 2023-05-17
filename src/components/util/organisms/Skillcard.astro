@@ -131,9 +131,11 @@ const skill_description = [
   cardItems?.forEach((item, index) => {
     item?.addEventListener('click', () => {
       const desc = item.querySelector('.card-description')
-      desc?.classList.toggle("opacity-0")
-      desc?.classList.toggle("scale-50")
-      desc?.classList.toggle("scale-100")
+      if(desc?.classList.value.includes("opacity-0")) {
+        desc?.classList.toggle("opacity-0")
+        desc?.classList.toggle("scale-50")
+        desc?.classList.toggle("scale-100")
+      }
     })
     item?.addEventListener('mouseleave', () => {
       const desc = item.querySelector('.card-description')
