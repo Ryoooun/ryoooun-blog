@@ -1,10 +1,10 @@
 # MagicaVoxel @ Ephtracy
 
 # group
-o 
+o
 
 # material
-mtllib Skill-log.vox-2.mtl
+mtllib vox-2.mtl
 usemtl palette
 
 # normals

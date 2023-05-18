@@ -2,6 +2,9 @@
 
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Skillcard from '../components/util/organisms/Skillcard.astro'
+import ParsonalTag from '../components/util/atoms/ParsonalTag.astro'
+import Card3D from '../components/util/atoms/Card3D.astro'
+
 import styles from '../styles/aboutstyle.module.scss'
 ---
 
@@ -18,10 +21,7 @@ import styles from '../styles/aboutstyle.module.scss'
       現在はフロントエンドの学習をしており、このブログもその学習の遊び場として開設するに至りました。
     </p>
     <h3 class={styles.heading3}>自身を表す言葉</h3>
-    <p class={styles.paragraph}>
-      仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/見た目はクール、中身はホット/
-      縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派
-    </p>
+      <ParsonalTag />
     <h2 class={styles.heading2}>保有スキルと経験(Not 実務)</h2>
       <Skillcard />
     <h2 class={styles.heading2}>他の経験と特技・趣味</h2>
@@ -33,6 +33,7 @@ import styles from '../styles/aboutstyle.module.scss'
       趣味は、ピクセルアート・ボクセルアート、料理、今はサボってますが筋トレも好きです。
       特技は、弓道でインターハイ出場経験と地方大会での優勝経験があります。また一眼レフカメラでの写真撮影も得意で、小さなフォトコンテストで準優勝したのがささやかな自慢です。
     </p>
+    <!-- <Card3D /> -->
   </main>
 </BaseLayout>
 

@@ -1,0 +1,10 @@
+---
+const parsonal = `仮説思考/言語化だいじに/柔軟/素直/熱しやすく冷めづらい/情に厚い/縁の下の力持ち的ポジション/周りが楽しんでいるのを見るのが好き/料理男子/猫派`
+const parsonalList = parsonal.split('/')
+---
+
+<div class="flex flex-row flex-wrap gap-2">
+  {parsonalList.map((tag, index) => (
+    <span class="inline-block p-2 rounded-xl font-bold text-white font-mono bg-[#EB5555]">{tag}</span>
+  ))}
+</div>

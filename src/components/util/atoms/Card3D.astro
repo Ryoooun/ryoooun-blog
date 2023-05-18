@@ -1,0 +1,155 @@
+---
+
+---
+<div id="Stats-output"></div>
+<div id="WebGL-output"></div>
+<style lang="scss">
+</style>
+<script>
+      import * as THREE from 'three'
+      import Stats from 'three/examples/jsm/libs/stats.module'
+      import { GUI } from 'dat.gui'
+      import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+      import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader'
+
+      function init() {
+        // const stats = new Stats()
+        // document.getElementById('Stats-output')?.appendChild(stats.dom)
+
+
+
+        // sceneオブジェクトのインスタンス化
+        const scene = new THREE.Scene();
+        // cameraオブジェクトのインスタンス化
+        const camera = new THREE.PerspectiveCamera(1, window.innerWidth / window.innerHeight, 0.1, 1000)
+
+
+        // rendererオブジェクトのインスタンス化
+
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor(new THREE.Color(0xFFFFFF), 0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        const axes = new THREE.AxesHelper(50)
+        scene.add(axes);
+
+        let object_log: THREE.Object3D;
+        const mtLoader = new MTLLoader();
+        mtLoader.setPath('/models/')
+        mtLoader.load('vox-0.mtl', (materials) => {
+          materials.preload();
+          const objLoader = new OBJLoader();
+          objLoader.setMaterials(materials);
+          objLoader.setPath('/models/')
+          objLoader.load('vox-0.obj', (object) => {
+            object.position.setX(0.3)
+            object.position.setY(0)
+            object.position.setZ(0.6)
+            const mesh = object;
+            object_log = object;
+            mesh.castShadow = true
+            scene.add(mesh);
+            console.log(mesh)
+          })
+        })
+
+        // const planeGeometry = new THREE.PlaneGeometry(60, 20);
+        // const planeMaterial = new THREE.MeshLambertMaterial({
+        //   color: 0xcccccc
+        // });
+        // const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+        // plane.receiveShadow = true
+        // plane.rotation.x = -0.5 * Math.PI;
+        // plane.position.x =15;
+        // plane.position.y = 0
+        // plane.position.z = 0;
+        // scene.add(plane)
+
+        // const cubeGeometry = new THREE.BoxGeometry(4, 4, 4,)
+        // const cubeMaterial = new THREE.MeshLambertMaterial({
+        //   color: 0xff0000
+        // });
+        // const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        // cube.castShadow = true
+        // cube.position.x = -4;
+        // cube.position.y = 3;
+        // cube.position.z = 0;
+
+        // scene.add(cube);
+
+        // const sphereGeometry = new THREE.SphereGeometry(4, 20, 20);
+        // const sphereMaterial = new THREE.MeshLambertMaterial({
+        //   color: 0x7777ff
+        // })
+        // const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+        // sphere.castShadow = true
+        // sphere.position.x = 20;
+        // sphere.position.y = 4;
+        // sphere.position.z = 2;
+
+        // scene.add(sphere);
+
+        const spotLight = new THREE.SpotLight(0xffffff, 1, 1000);
+        spotLight.castShadow = true
+        spotLight.position.set(50, 50, 50)
+        scene.add(spotLight)
+
+        camera.position.x = 200;
+        camera.position.y = 50;
+        camera.position.z = 200;
+        camera.lookAt(scene.position)
+
+        // const gui = new GUI()
+        // const cubeFolder = gui.addFolder('Cube')
+        // const speed = cubeFolder.add(cube.rotation, 'x', 0, 0.2, 0.01)
+        // cubeFolder.open()
+        // const sphereFolder = gui.addFolder("Sphere")
+        // // sphereFolder.add(sphere, "SphereBouncingSpeed", 0, 10, 0.05)
+        // sphereFolder.open()
+
+        let step = 0;
+        function renderScene(){
+          requestAnimationFrame(renderScene)
+          // step += 0.05;
+          // sphere.position.x = 20 + (10 * (Math.cos(step)))
+          // sphere.position.y = 2 + (10 * (Math.abs(Math.sin(step))))
+          // cube.rotation.x += 0.05
+          // cube.rotation.y += 0.05
+          // cube.rotation.z += 0.05
+          if(object_log){
+            object_log.rotateY(0.01)
+            // scene.rotateY(0.01)
+          }
+          renderer.render(scene, camera)
+          // stats.update()
+        }
+
+      const onResize = () => {
+        const widht = window.innerWidth;
+        const height = window.innerHeight;
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(widht, height);
+
+        camera.aspect = widht / height;
+        camera.updateProjectionMatrix();
+      }
+      onResize()
+      window.addEventListener("resize", onResize)
+
+
+        const output = document.getElementById("WebGL-output")
+        if(output){
+          output.appendChild(renderer.domElement)
+          document.querySelector('canvas')?.classList.add('absolute', 'top-10', 'left-0' )
+          renderScene()
+        }
+        renderer.render(scene, camera)
+      };
+
+
+
+
+      window.onload = init;
+
+</script>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostCardList from '../../components/util/organisms/PostCardList.astro'
+import ProjectCardList from '../../components/ProjectCardList.astro'
 import Breadcrumb from  "../../components/util/atoms/Breadcrumb.astro"
 
 import { SITE } from "../../config";
@@ -19,6 +20,7 @@ const crumbs = Astro.url.pathname
 <BaseLayout title={SITE.title} descritpion={SITE.desc} >
   <section class="mx-6 sm:mx-20 lg:mx-40">
     <Breadcrumb />
-    <PostCardList />
+    <!-- <PostCardList /> -->
+    <ProjectCardList />
   </section>
 </BaseLayout>
