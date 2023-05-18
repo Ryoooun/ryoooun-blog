@@ -1,0 +1,43 @@
+.card {
+  background: white;
+  border-radius: 30px;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+  transition: 0.2s ease-in-out;
+}
+
+.img {
+  width: 100%;
+  // height: 50%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  display: flex;
+  align-items: top;
+  justify-content: right;
+}
+
+.text {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: space-around;
+}
+
+.text .h3 {
+  font-family: 'Lucida Sans' sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: black;
+}
+
+.text .p {
+  font-family: 'Lucida Sans' sans-serif;
+  color: #999999;
+  font-size: 13px;
+}
+
+
+.card:hover {
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+}
+
