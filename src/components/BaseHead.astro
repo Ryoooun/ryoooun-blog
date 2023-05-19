@@ -12,7 +12,7 @@ const cononicalURL = "https://komogomo.vercel.app/";
 const ogpImageURL = new URL('/main_ogp.svg', cononicalURL)
 
 const { title, description, ogp } = Astro.props;
-const url = Astro.url.href
+const url = "https://komogomo.vercel.app/"
 ---
 
 
@@ -31,7 +31,7 @@ const url = Astro.url.href
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ryoooun214">
-<meta name="twitter:image" content={ogp}>
+<meta name="twitter:image" content={ogp && 'https://komogomo.vercel.app/main_ogp.svg'}>
 <!-- Canonical URL -->
 <link rel="canonical" href={cononicalURL} />
 
