@@ -3,7 +3,8 @@ import type { Site, SocialObjects } from "./types";
 export const SITE: Site = {
   website: "https://komogomo.vercel.app/",
   author: "Ryosuke Yamashita",
-  desc: "個人的な技術・趣味ブログです。",
+  desc: "このブログは、業界・業種・実務、トリプル未経験の28歳フリーターがWebフロントエンドエンジニアを目指す上で学習している内容であったり、\
+  趣味の内容をまとめたものです。",
   title: "komogomo",
   ogImage: "",
   lightAndDarkMode: true,
