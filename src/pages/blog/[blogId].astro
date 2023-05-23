@@ -21,7 +21,7 @@ const { blogId } = Astro.params;
 const blog = await getBlogDetail(blogId as string);
 ---
 
-<BaseLayout title={blog.title} description={blog.title} ogp={blog.eyecatch.url} >
+<BaseLayout title={blog.title} description={blog.title} ogp={blog.eyecatch.url} url={new URL(blogId, 'https://komogomo.vercel.app/blog/')} visiable={true} >
   <section class="mx-6 sm:mx-20 lg:mx-40">
     <Breadcrumbs placeholder={blog.title} />
     <h1 class="text-3xl mb-4">{blog.title}</h1>
