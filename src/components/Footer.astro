@@ -1,17 +1,30 @@
 ---
 const today = new Date();
-const url = Astro.url.href
+const url = Astro.url
 const twitterId = "ryoooun214"
 const {title} = Astro.props
 ---
-<!-- <hr class="mx-8">
-<div class="text-center mx-8 text-sm">
-  記事がためになったら、シェアしてもらえるとテンションが上がります。
-  <a href=`https://twitter.com/share?url=${url}&via=${twitterId}&related=${twitterId}&text=${title}` rel="nofollow noopener" target="_blank"
-  ><img src="/icon/twitter.svg" alt="twitter" class="w-10 sm:w-12">
-</a>
-</div> -->
+
 <footer class="p-6 text-center">
+  <div class="bg-gray-200 rounded-lg py-2 px-4 inline-block w-auto">
+    <ul class="flex justify-center my-4 gap-4">
+      <li>
+        <a href=`https://twitter.com/share?url=${url}&via=${twitterId}&related=${twitterId}&text=${title}` rel="nofollow" target="_blank">
+          <img src="/icon/twitter.svg" alt="twitter" class="w-8 sm:w-12">
+        </a>
+    </li>
+    <li>
+      <a href=`http://b.hatena.ne.jp/add?mode=confirm&url=${url}&title=${title}` rel="nofollow noopener" target="_blank">
+        <img src="/icon/hatena_blog_logo.svg" alt="hatera" class="w-8 h-8 sm:w-12 sm:h-12">
+      </a>
+    </li>
+    <li>
+      <a href=`http://getpocket.com/edit?url=${url}&title=${title}` rel="nofollow" rel="nofollow" target="_blank">
+        <img src="/icon/pocket.svg" alt="pocket" class="w-8 h-8 sm:w-12 sm:h-12">
+      </a>
+    </li>
+    </ul>
+  </div>
   <p>
     &copy; {today.getFullYear()} Ryosuke Yamashita.
   </p>

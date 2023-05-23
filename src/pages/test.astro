@@ -62,6 +62,7 @@ import { SITE } from "../config";
             mesh.scale.set(2,2,2)
             mesh.position.x = 0;
             mesh.position.z = 0;
+            mesh.castShadow = true;
             scene.add(mesh);
             console.log(mesh)
           })
@@ -106,6 +107,7 @@ import { SITE } from "../config";
         const spotLight = new THREE.SpotLight(0xffffff);
         spotLight.castShadow = true
         spotLight.position.set(-7, 5, 30)
+        spotLight.castShadow = true;
         scene.add(spotLight)
 
         camera.position.x = -30;
