@@ -75,6 +75,8 @@ const createBlogHtml = async (blog: Blog & MicroCMSContentId & MicroCMSDate): Pr
     })
     $("iframe").each((_, elm) => {
       $(elm).removeAttr('width')
+      const srcPath = $(elm).attr('src')?.replace("%2Fpreview", "")
+      $(elm).prop('src', String(srcPath))
       $(elm).css("width", "100%")
     })
     $("h1").each((_, elm) => {
